@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainRootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7F5"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Hi-Tech Durian Header Background -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:src="@drawable/bg_durian_hitech"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ═══════ TOP BAR ═══════ -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="16dp">
+
+                <ImageView
+                    android:id="@+id/btnSettings"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_alignParentEnd="true"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_settings"
+                    app:tint="@color/white"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/action_settings" />
+            </RelativeLayout>
+
+            <!-- ═══════ HERO SECTION ═══════ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="32dp"
+                android:paddingBottom="40dp">
+
+                <!-- Logo -->
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/ic_app_logo"
+                    android:contentDescription="App Logo" />
+
+                <!-- App Title -->
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Tagline -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_desc"
+                    android:textSize="14sp"
+                    android:textColor="#C8E6C9"
+                    android:gravity="center"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+
+            <!-- ═══════ ACTION CARDS ═══════ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="-16dp">
+
+                <!-- Scan Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="12dp"
+                    app:strokeWidth="0dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:id="@+id/btnStartDetecting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="20dp"
+                        android:background="?attr/selectableItemBackground">
+
+                        <FrameLayout
+                            android:layout_width="56dp"
+                            android:layout_height="56dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_circle_accent" />
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_camera_scan"
+                                app:tint="@color/white" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/start_detecting"
+                                android:textSize="19sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ถ่ายภาพเพื่อวิเคราะห์โรคด้วย AI"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/textColorHint" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Analyze Image Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="12dp"
+                    app:strokeWidth="0dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:id="@+id/btnAnalyzeImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="20dp"
+                        android:background="?attr/selectableItemBackground">
+
+                        <FrameLayout
+                            android:layout_width="56dp"
+                            android:layout_height="56dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_circle_accent" />
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_image_upload"
+                                app:tint="@color/white" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="วิเคราะห์จากรูปภาพ"
+                                android:textSize="19sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="เลือกรูปภาพใบจากแกลลอรี"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/textColorHint" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Disease Info Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="12dp"
+                    app:strokeWidth="0dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:id="@+id/btnDiseaseInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="20dp"
+                        android:background="?attr/selectableItemBackground">
+
+                        <FrameLayout
+                            android:layout_width="56dp"
+                            android:layout_height="56dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_circle_accent" />
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_info_disease"
+                                app:tint="@color/white" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/btn_disease_info"
+                                android:textSize="19sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ข้อมูลโรค 7 ประเภท และการรักษา"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/textColorHint" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

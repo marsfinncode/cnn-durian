@@ -1,0 +1,115 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- Background squircle -->
+    <path
+        android:pathData="M112,0 h288 a112,112 0 0 1 112,112 v288 a112,112 0 0 1 -112,112 h-288 a112,112 0 0 1 -112,-112 v-288 a112,112 0 0 1 112,-112 z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="0"
+                android:startY="0"
+                android:endX="512"
+                android:endY="512"
+                android:type="linear">
+                <item android:offset="0" android:color="#10B981" />
+                <item android:offset="1" android:color="#047857" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Viewfinder Corner Brackets -->
+    <path
+        android:pathData="M 120 200 L 120 135 L 185 135"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="20"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M 327 135 L 392 135 L 392 200"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="20"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M 120 312 L 120 377 L 185 377"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="20"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M 327 377 L 392 377 L 392 312"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="20"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Left Side: Healthy Vibrant Foliage -->
+    <group>
+        <clip-path android:pathData="M0,0 h256 v512 h-256 z" />
+        <path
+            android:pathData="M 120 256 C 160 170, 352 170, 392 256 C 352 342, 160 342, 120 256 Z"
+            android:fillColor="#059669" />
+        <path android:pathData="M 180 256 L 220 205" android:strokeColor="#024e35" android:strokeWidth="8" android:strokeLineCap="round" />
+        <path android:pathData="M 180 256 L 220 307" android:strokeColor="#024e35" android:strokeWidth="8" android:strokeLineCap="round" />
+        <path android:pathData="M 225 256 L 256 215" android:strokeColor="#024e35" android:strokeWidth="8" android:strokeLineCap="round" />
+        <path android:pathData="M 225 256 L 256 297" android:strokeColor="#024e35" android:strokeWidth="8" android:strokeLineCap="round" />
+    </group>
+
+    <!-- Right Side: Diseased / Diagnostic Golden-Amber Tone -->
+    <group>
+        <clip-path android:pathData="M256,0 h256 v512 h-256 z" />
+        <path
+            android:pathData="M 120 256 C 160 170, 352 170, 392 256 C 352 342, 160 342, 120 256 Z"
+            android:fillColor="#D97706" />
+        <path android:pathData="M 285 256 L 320 210" android:strokeColor="#92400E" android:strokeWidth="8" android:strokeLineCap="round" />
+        <path android:pathData="M 285 256 L 320 302" android:strokeColor="#92400E" android:strokeWidth="8" android:strokeLineCap="round" />
+        <path android:pathData="M 330 256 L 360 225" android:strokeColor="#92400E" android:strokeWidth="8" android:strokeLineCap="round" />
+        <path android:pathData="M 330 256 L 360 287" android:strokeColor="#92400E" android:strokeWidth="8" android:strokeLineCap="round" />
+
+        <!-- Diagnostic Disease Spots / Lesions -->
+        <path android:pathData="M 276,225 a 9,9 0 1,0 18,0 a 9,9 0 1,0 -18,0" android:fillColor="#78350F" />
+        <path android:pathData="M 299,240 a 11,11 0 1,0 22,0 a 11,11 0 1,0 -22,0" android:fillColor="#78350F" />
+        <path android:pathData="M 283,285 a 12,12 0 1,0 24,0 a 12,12 0 1,0 -24,0" android:fillColor="#78350F" />
+        <path android:pathData="M 327,275 a 8,8 0 1,0 16,0 a 8,8 0 1,0 -16,0" android:fillColor="#78350F" />
+        <path android:pathData="M 343,245 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" android:fillColor="#78350F" />
+        
+        <!-- Irregular infection lesion border -->
+        <path android:pathData="M 260 300 Q 280 315 270 325 Q 256 330 256 305 Z" android:fillColor="#78350F" />
+    </group>
+
+    <!-- Leaf Outline Border -->
+    <path
+        android:pathData="M 120 256 C 160 170, 352 170, 392 256 C 352 342, 160 342, 120 256 Z"
+        android:strokeColor="#064E3B"
+        android:strokeWidth="10"
+        android:fillColor="#00000000" />
+
+    <!-- Central Midrib / Stem Line -->
+    <path
+        android:pathData="M 120 256 L 392 256"
+        android:strokeColor="#064E3B"
+        android:strokeWidth="10"
+        android:strokeLineCap="round" />
+
+    <!-- Laser AI Scan Beam -->
+    <!-- Outer Glow Line (Solid with Alpha instead of filter blur) -->
+    <path
+        android:pathData="M 90 256 L 422 256"
+        android:strokeColor="#55A7F3D0"
+        android:strokeWidth="16" />
+    <!-- Sharp Core Laser -->
+    <path
+        android:pathData="M 90 256 L 422 256"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="7"
+        android:strokeLineCap="round" />
+    <!-- Central Sensor Pulse Nodes -->
+    <path
+        android:pathData="M 247,256 a 9,9 0 1,0 18,0 a 9,9 0 1,0 -18,0"
+        android:fillColor="#FFFFFF" />
+
+</vector>

@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="300dp"
+    android:viewportWidth="400"
+    android:viewportHeight="300">
+
+    <!-- Base dark green background -->
+    <path
+        android:fillColor="#1B5E20"
+        android:pathData="M0,0 h400 v220 l-40,30 l-40,-20 l-40,40 l-40,-30 l-40,50 l-40,-40 l-40,30 l-40,-20 l-40,30 l-40,-30 v-230 Z" />
+
+    <!-- Lighter geometric shapes for a hi-tech faceted look -->
+    <path
+        android:fillColor="#2E7D32"
+        android:fillAlpha="0.5"
+        android:pathData="M0,0 h400 v180 l-60,20 l-40,-30 l-60,50 l-40,-30 l-60,40 l-40,-20 l-40,30 l-60,-20 v-200 Z" />
+        
+    <path
+        android:fillColor="#388E3C"
+        android:fillAlpha="0.3"
+        android:pathData="M160,0 h240 v120 l-80,40 l-60,-30 l-100,60 v-190 Z" />
+
+</vector>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_light">
+
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarDetail"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/white"
+        app:subtitleTextColor="#B2DFDB"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationIconTint="@color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Image Placeholder -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:background="@color/surfaceVariant">
+
+                <ImageView
+                    android:id="@+id/ivDiseaseImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="ภาพตัวอย่างของโรค" />
+
+                <!-- Placeholder text (shown when no image) -->
+                <TextView
+                    android:id="@+id/tvImagePlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="📷  เตรียมใส่รูปภาพ"
+                    android:textSize="16sp"
+                    android:textColor="@color/textColorHint" />
+            </FrameLayout>
+
+            <!-- Content Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="-20dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:strokeWidth="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <!-- Title -->
+                    <TextView
+                        android:id="@+id/tvDetailTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="48dp"
+                        android:layout_height="3dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/colorAccent" />
+
+                    <!-- Description (HTML rendered) -->
+                    <TextView
+                        android:id="@+id/tvDetailDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/textColorPrimary"
+                        android:lineSpacingExtra="6dp" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

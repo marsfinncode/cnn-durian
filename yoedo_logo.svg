@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+
+    <!-- Scan Beam Glow Filter -->
+    <filter id="scanGlow" x="-20%" y="-100%" width="140%" height="300%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Leaf Clip Paths for Split Colors -->
+    <clipPath id="leftHalf">
+      <rect x="0" y="0" width="256" height="512" />
+    </clipPath>
+    <clipPath id="rightHalf">
+      <rect x="256" y="0" width="256" height="512" />
+    </clipPath>
+
+    <!-- Durian Leaf Full Shape -->
+    <path id="leafShape" d="M 120 256 C 160 170, 352 170, 392 256 C 352 342, 160 342, 120 256 Z" />
+  </defs>
+
+  <!-- App Icon Squircle Container -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Viewfinder Corner Brackets -->
+  <g stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Top-Left Bracket -->
+    <path d="M 120 200 L 120 135 L 185 135" />
+    <!-- Top-Right Bracket -->
+    <path d="M 327 135 L 392 135 L 392 200" />
+    <!-- Bottom-Left Bracket -->
+    <path d="M 120 312 L 120 377 L 185 377" />
+    <!-- Bottom-Right Bracket -->
+    <path d="M 327 377 L 392 377 L 392 312" />
+  </g>
+
+  <!-- Durian Leaf Base Elements -->
+  <!-- Left Side: Healthy Vibrant Foliage -->
+  <g clip-path="url(#leftHalf)">
+    <use href="#leafShape" fill="#059669" />
+    <!-- Healthy Leaf Veins -->
+    <path d="M 180 256 L 220 205" stroke="#024e35" stroke-width="8" stroke-linecap="round" />
+    <path d="M 180 256 L 220 307" stroke="#024e35" stroke-width="8" stroke-linecap="round" />
+    <path d="M 225 256 L 256 215" stroke="#024e35" stroke-width="8" stroke-linecap="round" />
+    <path d="M 225 256 L 256 297" stroke="#024e35" stroke-width="8" stroke-linecap="round" />
+  </g>
+
+  <!-- Right Side: Diseased / Diagnostic Golden-Amber Tone -->
+  <g clip-path="url(#rightHalf)">
+    <use href="#leafShape" fill="#D97706" />
+    <!-- Pathology Veins -->
+    <path d="M 285 256 L 320 210" stroke="#92400E" stroke-width="8" stroke-linecap="round" />
+    <path d="M 285 256 L 320 302" stroke="#92400E" stroke-width="8" stroke-linecap="round" />
+    <path d="M 330 256 L 360 225" stroke="#92400E" stroke-width="8" stroke-linecap="round" />
+    <path d="M 330 256 L 360 287" stroke="#92400E" stroke-width="8" stroke-linecap="round" />
+
+    <!-- Diagnostic Disease Spots / Lesions -->
+    <circle cx="285" cy="225" r="9" fill="#78350F" />
+    <circle cx="310" cy="240" r="11" fill="#78350F" />
+    <circle cx="295" cy="285" r="12" fill="#78350F" />
+    <circle cx="335" cy="275" r="8" fill="#78350F" />
+    <circle cx="350" cy="245" r="7" fill="#78350F" />
+    <!-- Irregular infection lesion border -->
+    <path d="M 260 300 Q 280 315 270 325 Q 256 330 256 305 Z" fill="#78350F" />
+  </g>
+
+  <!-- Leaf Outline Border -->
+  <use href="#leafShape" fill="none" stroke="#064E3B" stroke-width="10" />
+
+  <!-- Central Midrib / Stem Line -->
+  <line x1="120" y1="256" x2="392" y2="256" stroke="#064E3B" stroke-width="10" stroke-linecap="round" />
+
+  <!-- Laser AI Scan Beam -->
+  <g id="scanBeam">
+    <!-- Outer Glow Line -->
+    <line x1="90" y1="256" x2="422" y2="256" stroke="#A7F3D0" stroke-width="16" filter="url(#scanGlow)" opacity="0.85" />
+    <!-- Sharp Core Laser -->
+    <line x1="90" y1="256" x2="422" y2="256" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+    <!-- Central Sensor Pulse Nodes -->
+    <circle cx="256" cy="256" r="9" fill="#FFFFFF" filter="url(#scanGlow)" />
+  </g>
+</svg>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/border_light"
+    app:cardBackgroundColor="@color/surfaceColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Top Row: Pathogen Title & Severity Badge -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <!-- Pathogen Name & Confidence -->
+            <TextView
+                android:id="@+id/tvDiseaseTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="98.2% Phytophthora Blight" />
+
+            <!-- Severity Badge -->
+            <TextView
+                android:id="@+id/tvSeverityBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/severity_critical"
+                android:background="@drawable/bg_badge_green"
+                android:text="Critical" />
+        </LinearLayout>
+
+        <!-- Lesion Coverage Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="Lesion Coverage (พื้นที่ติดโรค)"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="13sp" />
+                    
+                <TextView
+                    android:id="@+id/tvCoveragePercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="45%" />
+            </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/pbCoverage"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:progressTint="@color/severity_critical"
+                android:progressBackgroundTint="@color/border_light" />
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Treatment Advice Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Treatment Advice"
+            android:textColor="@color/infoBanner"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Detailed Description -->
+        <TextView
+            android:id="@+id/tvDiseaseDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColorSecondary"
+            android:textSize="14sp"
+            android:lineSpacingExtra="4dp"
+            android:text="Lorem ipsum treatment..." />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

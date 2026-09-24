@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- YOEDO Brand Palette -->
+    <!-- Brand Primary (Agri Emerald) -->
+    <color name="colorPrimary">#059669</color>
+    <color name="colorPrimaryDark">#047857</color>
+    <color name="colorPrimaryLight">#34D399</color>
+
+    <!-- Brand Accent / Laser (Neon Mint) -->
+    <color name="colorAccent">#00F59B</color>
+
+    <!-- Surfaces & Backgrounds (Light Mode) -->
+    <color name="background_light">#F8FAF8</color>
+    <color name="surfaceColor">#FFFFFF</color>
+    <color name="border_light">#E5E7EB</color>
+
+    <!-- Text (Light Mode) -->
+    <color name="textColorPrimary">#0F241C</color>
+    <color name="textColorSecondary">#64748B</color>
+    <color name="textColorHint">#9AA0A6</color>
+
+    <!-- Info Banner (Tech Blue) -->
+    <color name="infoBanner">#2563EB</color>
+    <color name="infoBannerTint">#EFF6FF</color>
+
+    <!-- Severity Scale Colors (Light) -->
+    <!-- Level 0 (Healthy) -->
+    <color name="severity_healthy">#10B981</color>
+    <color name="severity_healthy_tint">#ECFDF5</color>
+    <!-- Level 1 (Mild) -->
+    <color name="severity_mild">#F59E0B</color>
+    <color name="severity_mild_tint">#FFFBEB</color>
+    <!-- Level 2 (Moderate) -->
+    <color name="severity_moderate">#F97316</color>
+    <color name="severity_moderate_tint">#FFF7ED</color>
+    <!-- Level 3 (Critical) -->
+    <color name="severity_critical">#EF4444</color>
+    <color name="severity_critical_tint">#FEF2F2</color>
+
+    <!-- Pathogen Specific Badges -->
+    <color name="pathogen_phytophthora">#DC2626</color>
+    <color name="pathogen_anthracnose">#D97706</color>
+    <color name="pathogen_cephaleuros">#0D9488</color>
+    <color name="pathogen_phomopsis">#854D0E</color>
+    <color name="pathogen_other">#475569</color>
+
+    <!-- Legacy / Shared Divider -->
+    <color name="divider">#E5E7EB</color>
+
+    <!-- Legacy Colors (required for other layouts) -->
+    <color name="surfaceVariant">#E8F0E8</color>
+    <color name="statusDanger">#D32F2F</color>
+    <color name="statusDangerSurface">#FFEBEE</color>
+    <color name="statusWarning">#E65100</color>
+    <color name="statusWarningSurface">#FFF3E0</color>
+    <color name="statusInfo">#0288D1</color>
+    <color name="statusInfoSurface">#E1F5FE</color>
+    <color name="statusHealthy">#388E3C</color>
+    <color name="statusHealthySurface">#E8F5E9</color>
+    <color name="colorPrimarySurface">#E8F5E9</color>
+</resources>

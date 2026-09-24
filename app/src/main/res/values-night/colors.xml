@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- YOEDO Brand Palette -->
+    <!-- Brand Primary (Agri Emerald) -->
+    <color name="colorPrimary">#059669</color>
+    <color name="colorPrimaryDark">#047857</color>
+    <color name="colorPrimaryLight">#34D399</color>
+
+    <!-- Brand Accent / Laser (Neon Mint) -->
+    <color name="colorAccent">#00F59B</color>
+
+    <!-- Surfaces & Backgrounds (Dark Mode) -->
+    <!-- Canvas Dark: Obsidian Pine -->
+    <color name="background_light">#081C15</color>
+    <!-- Card Dark -->
+    <color name="surfaceColor">#0E2A20</color>
+    <!-- Border Dark -->
+    <color name="border_light">#1B3D30</color>
+
+    <!-- Text (Dark Mode) -->
+    <color name="textColorPrimary">#F9FAFB</color>
+    <color name="textColorSecondary">#94A3B8</color>
+    <color name="textColorHint">#64748B</color>
+
+    <!-- Info Banner (Tech Blue) -->
+    <color name="infoBanner">#60A5FA</color>
+    <color name="infoBannerTint">#1E3A8A</color>
+
+    <!-- Severity Scale Colors (Dark Mode Tints) -->
+    <!-- Level 0 (Healthy) -->
+    <color name="severity_healthy">#10B981</color>
+    <color name="severity_healthy_tint">#064E3B</color>
+    <!-- Level 1 (Mild) -->
+    <color name="severity_mild">#F59E0B</color>
+    <color name="severity_mild_tint">#451A03</color>
+    <!-- Level 2 (Moderate) -->
+    <color name="severity_moderate">#F97316</color>
+    <color name="severity_moderate_tint">#431407</color>
+    <!-- Level 3 (Critical) -->
+    <color name="severity_critical">#EF4444</color>
+    <color name="severity_critical_tint">#450A0A</color>
+
+    <!-- Pathogen Specific Badges (Same as light mode or slightly adjusted) -->
+    <color name="pathogen_phytophthora">#DC2626</color>
+    <color name="pathogen_anthracnose">#F59E0B</color>
+    <color name="pathogen_cephaleuros">#2DD4BF</color>
+    <color name="pathogen_phomopsis">#A16207</color>
+    <color name="pathogen_other">#94A3B8</color>
+
+    <!-- Legacy / Shared Divider -->
+    <color name="divider">#1B3D30</color>
+
+    <!-- Legacy Colors (required for other layouts) -->
+    <color name="surfaceVariant">#143525</color>
+    <color name="statusDanger">#EF4444</color>
+    <color name="statusDangerSurface">#450A0A</color>
+    <color name="statusWarning">#F59E0B</color>
+    <color name="statusWarningSurface">#451A03</color>
+    <color name="statusInfo">#38BDF8</color>
+    <color name="statusInfoSurface">#082F49</color>
+    <color name="statusHealthy">#10B981</color>
+    <color name="statusHealthySurface">#064E3B</color>
+    <color name="colorPrimarySurface">#064E3B</color>
+</resources>

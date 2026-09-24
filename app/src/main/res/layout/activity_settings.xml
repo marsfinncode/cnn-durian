@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_light">
+
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarSettings"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/white"
+        app:title="@string/title_settings"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationIconTint="@color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Font Size Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/font_size"
+                        android:textSize="18sp"
+                        android:textColor="@color/textColorPrimary"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgFontSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/rbNormal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="ปกติ (Normal)"
+                            android:textSize="16sp"
+                            android:paddingVertical="8dp"
+                            android:buttonTint="@color/colorPrimary" />
+
+                        <RadioButton
+                            android:id="@+id/rbLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="ใหญ่ (Large)"
+                            android:textSize="18sp"
+                            android:paddingVertical="8dp"
+                            android:buttonTint="@color/colorPrimary" />
+
+                        <RadioButton
+                            android:id="@+id/rbExtraLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="ใหญ่มาก (Extra Large)"
+                            android:textSize="22sp"
+                            android:paddingVertical="8dp"
+                            android:buttonTint="@color/colorPrimary" />
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Preview Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp"
+                app:cardBackgroundColor="@color/colorPrimarySurface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ตัวอย่างข้อความ"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/tvPreview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="โรครากเน่าโคนเน่า เกิดจากเชื้อรา Phytophthora palmivora ใบเหลืองซีด มีคราบน้ำยางสีน้ำตาลแดงไหลจากแผล"
+                        android:textSize="16sp"
+                        android:textColor="@color/textColorPrimary"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

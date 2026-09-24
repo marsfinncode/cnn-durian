@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.DiseasesDetection" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorSecondaryVariant">@color/colorAccent</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Surface -->
+        <item name="colorSurface">@color/surfaceColor</item>
+        <item name="colorOnSurface">@color/textColorPrimary</item>
+
+        <!-- Typography – Noto Sans is the best system Thai font -->
+        <item name="android:fontFamily">sans-serif</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+
+        <!-- Window -->
+        <item name="android:windowBackground">@color/background_light</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- Card button style reusable across the app -->
+    <style name="Widget.Durian.CardButton" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">16dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+</resources>

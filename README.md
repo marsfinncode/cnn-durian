@@ -47,4 +47,12 @@ This is a project under Burapha University grant and Mahidol Wittayanusorn Schoo
 2. Pakorn Wongaroon (MWIT 34): Responsible for assisting the data acquisition and paper edit.
 3. Nachanon Krinchai (MWIT 34): Responsible for application development.
 
-<img src="https://upload.wikimedia.org/wikipedia/th/4/47/Mwit-logo.png?utm_source=th.wikipedia.org&utm_campaign=index&utm_content=original" alt="MWIT logo" width="75" /> 
+<a href="https://mwit.ac.th/" target="_blank">
+ <img src="https://upload.wikimedia.org/wikipedia/th/4/47/Mwit-logo.png?utm_source=th.wikipedia.org&utm_campaign=index&utm_content=original" alt="MWIT logo" width="75" />
+</a>
+
+
+<a href="https://tjsif2026.pcshsbr.ac.th/" target="_blank">
+  <img src="https://tjsif2026.pcshsbr.ac.th/img/logo.png" alt="Thailand-Japan Student ICT Fair 2026" width="70">
+</a>
+

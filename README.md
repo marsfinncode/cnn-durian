@@ -1,6 +1,6 @@
-# Diseases Detection Application
+# Diseases Detection Application v.1.0
 
-<img src="app/src/main/res/drawable/ic_app_logo.xml" alt="App Logo" width="150" /> <!-- You can adjust the width number to make it bigger or smaller -->
+<img src="yoedo_logo.svg" alt="App Logo" width="150" /> 
 
 ## Overview
 **Diseases Detection Application** is an Android mobile application designed to analyze uploaded images and identify potential diseases. Built using Kotlin and modern Android development practices, this app provides an intuitive interface for users to upload images and view analysis results.
@@ -15,7 +15,6 @@
 * **Language:** [Kotlin](https://kotlinlang.org/)
 * **Platform:** Android
 * **UI:** XML Layouts (Views)
-* **Architecture:** (e.g., MVVM - Update this based on your actual architecture)
 
 ## Project Structure
 * `app/src/main/java/.../` - Contains the Kotlin source code (e.g., `ImageAnalysisActivity.kt`).
@@ -33,26 +32,23 @@
 ### Installation
 1. Clone this repository:
    ```bash
-   git clone https://github.com/YourUsername/YourRepositoryName.git
+   git clone https://github.com/marsfinncode/cnn-durian.git
    ```
 2. Open the project in **Android Studio**.
 3. Let Gradle sync and download the necessary dependencies.
 4. Run the app on an Android Emulator or a physical device via USB/Wi-Fi debugging.
 
-## Contributing
-1. Fork the project.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a Pull Request.
+
+## License
+This is a project under Burapha University grant and Mahidol Wittayanusorn School. Using this project commercially without proper permission is strictly prohibited.
 
 ## Publication
 
 This project is based on the research presented in our paper:
 
 **"Durian Leaf Disease Detection Using CNNs with Oriented Bounding Boxes on Drone-Simulated Imagery"**  
-Published in the Proceedings of AMM 2026.  
-[Read the full proceedings here (Page 320)](https://amm2026cna.sc.kku.ac.th/wp-content/uploads/2026/06/e-proc-final_compressed.pdf)
+Published in the Proceedings of the 30th Annual Meeting in Mathematics 2026 & Conference in Number Theory and Applications 2026.  
+[Read the full proceedings here (Page 303-309)](https://amm2026cna.sc.kku.ac.th/wp-content/uploads/2026/06/e-proc-final_compressed.pdf)
 
 ### Citation
 
@@ -61,13 +57,25 @@ If you find this project useful for your research, please consider citing our pa
 ```bibtex
 @inproceedings{durian_disease_detection_2026,
   title={Durian Leaf Disease Detection Using CNNs with Oriented Bounding Boxes on Drone-Simulated Imagery},
-  author={(Add Your Names Here)},
-  booktitle={Proceedings of AMM 2026},
-  pages={320},
+  author={(Suphanat Kladsa-ard, Pakorn Wongaroon, Nachanon Krinchai)},
+  booktitle={Proceedings of the 30th Annual Meeting in Mathematics 2026 & Conference in Number Theory and Applications 2026},
+  pages={303–309},
   year={2026},
   url={https://amm2026cna.sc.kku.ac.th/wp-content/uploads/2026/06/e-proc-final_compressed.pdf}
 }
 ```
 
-## License
-(Add your license here, e.g., MIT License)
+## Project Developers
+1. Suphanat Kladsa-ard (MWIT 34) (Project Leader): Responsible for model training and model adjustment techniques.
+2. Pakorn Wongaroon (MWIT 34): Responsible for assisting the data acquisition and paper edit.
+3. Nachanon Krinchai (MWIT 34): Responsible for application development.
+
+<a href="https://mwit.ac.th/" target="_blank">
+ <img src="https://upload.wikimedia.org/wikipedia/th/4/47/Mwit-logo.png?utm_source=th.wikipedia.org&utm_campaign=index&utm_content=original" alt="MWIT logo" width="75" />
+</a>
+
+
+<a href="https://tjsif2026.pcshsbr.ac.th/" target="_blank">
+  <img src="https://tjsif2026.pcshsbr.ac.th/img/logo.png" alt="Thailand-Japan Student ICT Fair 2026" width="70">
+</a>
+

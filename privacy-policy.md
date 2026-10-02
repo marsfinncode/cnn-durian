@@ -1,6 +1,6 @@
 # Privacy Policy for YOEDO
 
-**Effective Date:** [Insert Date]
+**Effective Date:** 2 October 2026
 
 Thank you for choosing to be part of our community at YOEDO ("we", "us", or "our"). We are committed to protecting your personal information and your right to privacy.
 

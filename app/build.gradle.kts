@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "com.example.diseasesdetectionapplication"
-    compileSdk = 34
+    namespace = "com.cateatmars_dev.yoedodurian"
+    compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.example.diseasesdetectionapplication"
+        applicationId = "com.cateatmars_dev.yoedodurian"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 36
+        versionCode = 2
+        versionName = "1.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

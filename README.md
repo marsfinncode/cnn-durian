@@ -1,4 +1,4 @@
-# Diseases Detection Application v.1.0
+# Diseases Detection Application v.1.1
 
 <img src="yoedo_logo.svg" alt="App Logo" width="150" /> 
 

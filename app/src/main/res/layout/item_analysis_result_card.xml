@@ -51,45 +51,7 @@
                 android:text="Critical" />
         </LinearLayout>
 
-        <!-- Lesion Coverage Bar -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="16dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp">
-                
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="Lesion Coverage (พื้นที่ติดโรค)"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="13sp" />
-                    
-                <TextView
-                    android:id="@+id/tvCoveragePercent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:text="45%" />
-            </RelativeLayout>
-
-            <ProgressBar
-                android:id="@+id/pbCoverage"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:progressTint="@color/severity_critical"
-                android:progressBackgroundTint="@color/border_light" />
-        </LinearLayout>
 
         <!-- Divider -->
         <View

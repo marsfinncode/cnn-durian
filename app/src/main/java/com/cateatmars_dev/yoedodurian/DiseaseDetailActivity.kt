@@ -20,8 +20,9 @@ class DiseaseDetailActivity : BaseActivity() {
         findViewById<TextView>(R.id.tvDetailTitle).text = title
 
         // Render HTML formatted content
-        findViewById<TextView>(R.id.tvDetailDesc).text =
-            android.text.Html.fromHtml(desc, android.text.Html.FROM_HTML_MODE_COMPACT)
+        val tvDetailDesc = findViewById<TextView>(R.id.tvDetailDesc)
+        tvDetailDesc.text = android.text.Html.fromHtml(desc, android.text.Html.FROM_HTML_MODE_COMPACT)
+        tvDetailDesc.movementMethod = android.text.method.LinkMovementMethod.getInstance()
             
         val imageRes = intent.getIntExtra("IMAGE_RES", -1)
         val ivDiseaseImage = findViewById<android.widget.ImageView>(R.id.ivDiseaseImage)

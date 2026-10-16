@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.camera" android:required="true" />
 
     <application
@@ -31,6 +32,9 @@
         <activity android:name=".DiseaseDetailActivity" android:exported="false" />
         <activity android:name=".SettingsActivity" android:exported="false" />
         <activity android:name=".ImageAnalysisActivity" android:exported="false" />
+        <activity android:name=".TreeScanActivity" android:exported="false" android:screenOrientation="portrait" />
+        <activity android:name=".ScanResultActivity" android:exported="false" />
+        <activity android:name=".ScanHistoryActivity" android:exported="false" />
 
     </application>
 

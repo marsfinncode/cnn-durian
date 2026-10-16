@@ -15,8 +15,8 @@
         <item name="colorSurface">@color/surfaceColor</item>
         <item name="colorOnSurface">@color/textColorPrimary</item>
 
-        <!-- Typography – Noto Sans is the best system Thai font -->
-        <item name="android:fontFamily">sans-serif</item>
+        <!-- Typography – Sarabun as default font -->
+        <item name="android:fontFamily">@font/sarabun</item>
 
         <!-- Status bar -->
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>

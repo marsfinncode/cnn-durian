@@ -41,6 +41,11 @@ class MainActivity : BaseActivity() {
             pickImageLauncher.launch("image/*")
         }
 
+        // Tree Scan button
+        findViewById<android.view.View>(R.id.btnTreeScan)?.setOnClickListener {
+            checkCameraPermissionAndStartTreeScan()
+        }
+
         // Disease info button
         findViewById<android.view.View>(R.id.btnDiseaseInfo)?.setOnClickListener {
             startActivity(Intent(this, DiseaseListActivity::class.java))
@@ -69,6 +74,23 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private fun checkCameraPermissionAndStartTreeScan() {
+        when {
+            ContextCompat.checkSelfPermission(
+                this, Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                startTreeScanActivity()
+            }
+            else -> {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.CAMERA),
+                    200 // Tree scan request code
+                )
+            }
+        }
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -85,10 +107,24 @@ class MainActivity : BaseActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
+        } else if (requestCode == 200) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startTreeScanActivity()
+            } else {
+                Toast.makeText(
+                    this,
+                    getString(R.string.camera_permission_denied),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 
     private fun startCameraActivity() {
         startActivity(Intent(this, CameraActivity::class.java))
+    }
+
+    private fun startTreeScanActivity() {
+        startActivity(Intent(this, TreeScanActivity::class.java))
     }
 }

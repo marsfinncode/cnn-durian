@@ -74,14 +74,25 @@
                     android:layout_marginBottom="8dp" />
 
                 <!-- Tagline -->
-                <TextView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_desc"
-                    android:textSize="14sp"
-                    android:textColor="#C8E6C9"
-                    android:gravity="center"
-                    android:lineSpacingExtra="4dp" />
+                    app:cardBackgroundColor="#88000000"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_desc"
+                        android:textSize="14sp"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp"
+                        android:lineSpacingExtra="4dp" />
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
             <!-- ═══════ ACTION CARDS ═══════ -->
@@ -98,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="24dp"
-                    app:cardElevation="12dp"
+                    app:cardElevation="4dp"
                     app:strokeWidth="0dp"
                     app:cardBackgroundColor="@color/white">
 
@@ -109,7 +120,7 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:padding="20dp"
-                        android:background="?attr/selectableItemBackground">
+                        android:background="@android:color/transparent">
 
                         <FrameLayout
                             android:layout_width="56dp"
@@ -158,13 +169,79 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Tree Scan Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="4dp"
+                    app:strokeWidth="0dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:id="@+id/btnTreeScan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="20dp"
+                        android:background="@android:color/transparent">
+
+                        <FrameLayout
+                            android:layout_width="56dp"
+                            android:layout_height="56dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_circle_accent" />
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_camera_scan"
+                                app:tint="@color/white" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/scan_whole_tree"
+                                android:textSize="19sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="สแกนรอบต้นเพื่อดูสถิติโรค"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/textColorHint" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
                 <!-- Analyze Image Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="24dp"
-                    app:cardElevation="12dp"
+                    app:cardElevation="4dp"
                     app:strokeWidth="0dp"
                     app:cardBackgroundColor="@color/white">
 
@@ -175,7 +252,7 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:padding="20dp"
-                        android:background="?attr/selectableItemBackground">
+                        android:background="@android:color/transparent">
 
                         <FrameLayout
                             android:layout_width="56dp"
@@ -230,7 +307,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="24dp"
-                    app:cardElevation="12dp"
+                    app:cardElevation="4dp"
                     app:strokeWidth="0dp"
                     app:cardBackgroundColor="@color/white">
 
@@ -241,7 +318,7 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:padding="20dp"
-                        android:background="?attr/selectableItemBackground">
+                        android:background="@android:color/transparent">
 
                         <FrameLayout
                             android:layout_width="56dp"

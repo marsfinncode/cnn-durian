@@ -128,23 +128,14 @@ class ImageAnalysisActivity : BaseActivity() {
             
             val tvDiseaseTitle = view.findViewById<TextView>(R.id.tvDiseaseTitle)
             val tvSeverityBadge = view.findViewById<TextView>(R.id.tvSeverityBadge)
-            val tvCoveragePercent = view.findViewById<TextView>(R.id.tvCoveragePercent)
-            val pbCoverage = view.findViewById<ProgressBar>(R.id.pbCoverage)
             val tvDiseaseDetails = view.findViewById<TextView>(R.id.tvDiseaseDetails)
 
             val meta = labelMap[result.label]
             val confidencePercent = "%.1f".format(result.confidence * 100)
             
-            // Calculate lesion coverage from bounding box (normalized area)
-            // Area = width * height. Max is 1.0 (100%).
-            val bbox = result.boundingBox
-            val area = (bbox.right - bbox.left) * (bbox.bottom - bbox.top)
-            val coveragePercent = (area * 100).coerceIn(0f, 100f)
-            
-            // Apply YOEDO Severity Logic
-            val severity = ThemeUtils.estimateSeverity(coveragePercent)
-            val severityColor = ThemeUtils.getSeverityColor(this, severity)
-            val severityTint = ThemeUtils.getSeverityTint(this, severity)
+            // Apply predefined UI colors from DiseaseMeta
+            val severityColor = if (meta != null) getColor(meta.colorRes) else getColor(R.color.textColorSecondary)
+            val severityTint = if (meta != null) getColor(meta.bgRes) else getColor(R.color.background_light)
             val pathogenColor = ThemeUtils.getPathogenColor(this, result.label)
 
             // Title
@@ -153,7 +144,7 @@ class ImageAnalysisActivity : BaseActivity() {
             tvDiseaseTitle.setTextColor(pathogenColor)
 
             // Severity Badge
-            tvSeverityBadge.text = ThemeUtils.getSeverityLabel(severity)
+            tvSeverityBadge.text = meta?.badgeText ?: "อื่นๆ"
             tvSeverityBadge.setTextColor(severityColor)
             val badgeBg = GradientDrawable()
             badgeBg.shape = GradientDrawable.RECTANGLE
@@ -161,17 +152,11 @@ class ImageAnalysisActivity : BaseActivity() {
             badgeBg.setColor(severityTint)
             tvSeverityBadge.background = badgeBg
 
-            // Coverage Bar
-            val coverageInt = coveragePercent.toInt()
-            tvCoveragePercent.text = "$coverageInt%"
-            tvCoveragePercent.setTextColor(severityColor)
-            pbCoverage.progress = coverageInt
-            pbCoverage.progressTintList = android.content.res.ColorStateList.valueOf(severityColor)
-
             // Details
             if (meta != null) {
                 val desc = getString(meta.descRes)
                 tvDiseaseDetails.text = Html.fromHtml(desc, Html.FROM_HTML_MODE_COMPACT)
+                tvDiseaseDetails.movementMethod = android.text.method.LinkMovementMethod.getInstance()
             } else {
                 tvDiseaseDetails.text = "ไม่มีคำแนะนำการรักษาเพิ่มเติมสำหรับโรคนี้"
             }

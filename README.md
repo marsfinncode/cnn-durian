@@ -48,22 +48,8 @@ This project is based on the research presented in our paper:
 
 **"Durian Leaf Disease Detection Using CNNs with Oriented Bounding Boxes on Drone-Simulated Imagery"**  
 Published in the Proceedings of the 30th Annual Meeting in Mathematics 2026 & Conference in Number Theory and Applications 2026.  
-[Read the full proceedings here (Page 303-309)](https://amm2026cna.sc.kku.ac.th/wp-content/uploads/2026/06/e-proc-final_compressed.pdf)
+[Read the full proceedings here (Page 303-309)](https://www.researchgate.net/publication/416823038_Durian_Leaf_Disease_Detection_Using_CNNs_with_Oriented_Bounding_Boxes_on_Drone-Simulated_Imagery)
 
-### Citation
-
-If you find this project useful for your research, please consider citing our paper:
-
-```bibtex
-@inproceedings{durian_disease_detection_2026,
-  title={Durian Leaf Disease Detection Using CNNs with Oriented Bounding Boxes on Drone-Simulated Imagery},
-  author={(Suphanat Kladsa-ard, Pakorn Wongaroon, Nachanon Krinchai)},
-  booktitle={Proceedings of the 30th Annual Meeting in Mathematics 2026 & Conference in Number Theory and Applications 2026},
-  pages={303–309},
-  year={2026},
-  url={https://amm2026cna.sc.kku.ac.th/wp-content/uploads/2026/06/e-proc-final_compressed.pdf}
-}
-```
 
 ## Project Developers
 1. Suphanat Kladsa-ard (MWIT 34) (Project Leader): Responsible for model training and model adjustment techniques.

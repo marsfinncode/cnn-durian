@@ -18,12 +18,20 @@
         <!-- Typography – Sarabun as default font -->
         <item name="android:fontFamily">@font/sarabun</item>
 
-        <!-- Status bar -->
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
-
-        <!-- Window -->
+        <!-- Window & Smooth Activity Transitions -->
         <item name="android:windowBackground">@color/background_light</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Durian.Activity</item>
+    </style>
+
+    <style name="Theme.DiseasesDetection.Splash" parent="Theme.DiseasesDetection">
+        <item name="android:windowBackground">@color/classic_forest_green</item>
+    </style>
+
+    <style name="Animation.Durian.Activity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
     <!-- Card button style reusable across the app -->

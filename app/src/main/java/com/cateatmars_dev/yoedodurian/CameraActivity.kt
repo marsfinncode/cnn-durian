@@ -3,17 +3,26 @@ package com.cateatmars_dev.yoedodurian
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
 import android.widget.TextView
-import androidx.camera.core.*
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageProxy
+import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 class CameraActivity : BaseActivity() {
+
+    override val isFullBleedScreen: Boolean = true
+    override val isDarkNavigationBar: Boolean = true
 
     companion object {
         private const val TAG = "CameraActivity"
@@ -28,24 +37,54 @@ class CameraActivity : BaseActivity() {
     private lateinit var objectDetectorHelper: ObjectDetectorHelper
 
     private var frameCount = 0
-    private val INFERENCE_EVERY_N_FRAMES = 3
+    private val INFERENCE_EVERY_N_FRAMES = 4
     @Volatile private var isDestroyed = false
+    @Volatile private var isProcessingFrame = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
 
-        previewView     = findViewById(R.id.previewView)
-        overlayView     = findViewById(R.id.overlayView)
+        previewView = findViewById(R.id.previewView)
+        overlayView = findViewById(R.id.overlayView)
         tvDetectionInfo = findViewById(R.id.tvDetectionInfo)
-        btnBack         = findViewById(R.id.btnBack)
+        btnBack = findViewById(R.id.btnBack)
 
+        setupInsets()
+        UiAnimations.applyPressEffect(btnBack)
         btnBack.setOnClickListener { finish() }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
         objectDetectorHelper = ObjectDetectorHelper(this)
 
         startCamera()
+    }
+
+    private fun setupInsets() {
+        val initBtnMarginTop = (btnBack.layoutParams as ViewGroup.MarginLayoutParams).topMargin
+        val initBtnMarginStart = (btnBack.layoutParams as ViewGroup.MarginLayoutParams).marginStart
+        val initInfoPadBottom = tvDetectionInfo.paddingBottom
+        val initInfoPadLeft = tvDetectionInfo.paddingLeft
+        val initInfoPadRight = tvDetectionInfo.paddingRight
+        val initInfoPadTop = tvDetectionInfo.paddingTop
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cameraRoot)) { _, insets ->
+            val bars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            val lp = btnBack.layoutParams as ViewGroup.MarginLayoutParams
+            lp.topMargin = initBtnMarginTop + bars.top
+            lp.marginStart = initBtnMarginStart + bars.left
+            btnBack.layoutParams = lp
+
+            tvDetectionInfo.setPadding(
+                initInfoPadLeft + bars.left,
+                initInfoPadTop,
+                initInfoPadRight + bars.right,
+                initInfoPadBottom + bars.bottom
+            )
+            insets
+        }
     }
 
     private fun startCamera() {
@@ -81,7 +120,7 @@ class CameraActivity : BaseActivity() {
     }
 
     private fun processImage(imageProxy: ImageProxy) {
-        if (isDestroyed) {
+        if (isDestroyed || isProcessingFrame) {
             imageProxy.close()
             return
         }
@@ -92,31 +131,48 @@ class CameraActivity : BaseActivity() {
             return
         }
 
-        val bitmap = imageProxy.toBitmap()
+        isProcessingFrame = true
+        val bitmap = try {
+            imageProxy.toBitmap()
+        } catch (_: Exception) {
+            imageProxy.close()
+            isProcessingFrame = false
+            return
+        }
         val rotatedBitmap = rotateBitmap(bitmap, imageProxy.imageInfo.rotationDegrees.toFloat())
         imageProxy.close()
 
-        if (isDestroyed) return
+        if (isDestroyed) {
+            isProcessingFrame = false
+            return
+        }
 
-        val detections = objectDetectorHelper.detect(rotatedBitmap)
+        val detections = try {
+            objectDetectorHelper.detect(rotatedBitmap)
+        } catch (e: Exception) {
+            Log.e(TAG, "Detection failed", e)
+            emptyList()
+        } finally {
+            isProcessingFrame = false
+        }
 
         runOnUiThread {
             if (isDestroyed) return@runOnUiThread
 
-            // Pass rotated dimensions so overlay scales correctly
             overlayView.setResults(
                 detections,
-                rotatedBitmap.width,   // width AFTER rotation
-                rotatedBitmap.height   // height AFTER rotation
+                rotatedBitmap.width,
+                rotatedBitmap.height
             )
 
             if (detections.isEmpty()) {
-                tvDetectionInfo.text = "No diseases detected"
+                tvDetectionInfo.text = getString(R.string.no_diseases_detected)
             } else {
                 val summary = detections.take(3).joinToString(" | ") {
-                    "${it.label}: ${"%.0f".format(it.confidence * 100)}%"
+                    val friendlyName = ThemeUtils.getDisplayLabel(this, it.label)
+                    "$friendlyName: ${"%.0f".format(it.confidence * 100)}%"
                 }
-                tvDetectionInfo.text = "Detected: $summary"
+                tvDetectionInfo.text = getString(R.string.detected_prefix, summary)
             }
         }
     }
@@ -130,10 +186,10 @@ class CameraActivity : BaseActivity() {
     override fun onDestroy() {
         isDestroyed = true
         super.onDestroy()
-        // Shutdown executor and wait for in-flight inference to finish
-        // before closing the interpreter
-        cameraExecutor.shutdown()
-        cameraExecutor.awaitTermination(500, TimeUnit.MILLISECONDS)
+        try {
+            cameraExecutor.shutdownNow()
+            cameraExecutor.awaitTermination(300, TimeUnit.MILLISECONDS)
+        } catch (_: Exception) {}
         objectDetectorHelper.close()
     }
 }

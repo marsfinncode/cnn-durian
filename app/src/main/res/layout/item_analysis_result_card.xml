@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="14dp">
 
         <!-- Top Row: Pathogen Title & Severity Badge -->
         <LinearLayout
@@ -25,7 +26,6 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="8dp">
 
-            <!-- Pathogen Name & Confidence -->
             <TextView
                 android:id="@+id/tvDiseaseTitle"
                 android:layout_width="0dp"
@@ -34,10 +34,8 @@
                 android:layout_marginEnd="8dp"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="98.2% Phytophthora Blight" />
+                android:textStyle="bold" />
 
-            <!-- Severity Badge -->
             <TextView
                 android:id="@+id/tvSeverityBadge"
                 android:layout_width="wrap_content"
@@ -47,30 +45,24 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/severity_critical"
-                android:background="@drawable/bg_badge_green"
-                android:text="Critical" />
+                android:background="@drawable/bg_badge_green" />
         </LinearLayout>
-
-
 
         <!-- Divider -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="14dp" />
 
-        <!-- Treatment Advice Section -->
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Structured Visual Guide Container -->
+        <LinearLayout
+            android:id="@+id/analysisGuideContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Treatment Advice"
-            android:textColor="@color/infoBanner"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:orientation="vertical" />
 
-        <!-- Detailed Description -->
+        <!-- Detailed Description (Legacy fallback) -->
         <TextView
             android:id="@+id/tvDiseaseDetails"
             android:layout_width="match_parent"
@@ -78,7 +70,7 @@
             android:textColor="@color/textColorSecondary"
             android:textSize="14sp"
             android:lineSpacingExtra="4dp"
-            android:text="Lorem ipsum treatment..." />
+            android:visibility="gone" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -12,13 +12,12 @@ import com.google.android.material.card.MaterialCardView
 
 class DiseaseListActivity : BaseActivity() {
 
-    // Each disease entry: (titleRes, descRes, indicatorColor, badge, subtitle, imageRes)
     data class DiseaseItem(
         val titleRes: Int,
         val descRes: Int,
-        val indicatorColor: Int,   // color resource id
-        val badge: String,
-        val subtitle: String,
+        val indicatorColor: Int,
+        val badgeRes: Int,
+        val subtitleRes: Int,
         val imageRes: Int? = null
     )
 
@@ -33,27 +32,27 @@ class DiseaseListActivity : BaseActivity() {
 
         val diseases = listOf(
             DiseaseItem(R.string.disease_phytophthora_title, R.string.disease_phytophthora_desc,
-                R.color.severity_critical, "รุนแรง", "เชื้อรา Phytophthora palmivora", R.drawable.img_phytophthora),
+                R.color.severity_critical, R.string.badge_critical, R.string.sub_phytophthora, R.drawable.img_phytophthora),
             DiseaseItem(R.string.disease_anthracnose_title, R.string.disease_anthracnose_desc,
-                R.color.severity_critical, "รุนแรง", "เชื้อราตระกูล Colletotrichum", R.drawable.img_anthracnose),
+                R.color.severity_critical, R.string.badge_critical, R.string.sub_anthracnose, R.drawable.img_anthracnose),
             DiseaseItem(R.string.disease_rhizoctonia_title, R.string.disease_rhizoctonia_desc,
-                R.color.severity_mild, "ระวัง", "เชื้อรา Rhizoctonia solani", R.drawable.img_rhizoctonia),
+                R.color.severity_mild, R.string.badge_warning, R.string.sub_rhizoctonia, R.drawable.img_rhizoctonia),
             DiseaseItem(R.string.disease_phomopsis_title, R.string.disease_phomopsis_desc,
-                R.color.severity_mild, "ระวัง", "เชื้อรา Phomopsis spp.", R.drawable.img_phomopsis),
+                R.color.severity_mild, R.string.badge_warning, R.string.sub_phomopsis, R.drawable.img_phomopsis),
             DiseaseItem(R.string.disease_algal_spot_title, R.string.disease_algal_spot_desc,
-                R.color.severity_healthy, "เฝ้าดู", "สาหร่าย Cephaleuros virescens", R.drawable.img_algal_spot),
+                R.color.severity_healthy, R.string.badge_watch, R.string.sub_algal_spot, R.drawable.img_algal_spot),
             DiseaseItem(R.string.disease_healthy_title, R.string.disease_healthy_desc,
-                R.color.severity_healthy, "ปกติ", "ใบแข็งแรง สมบูรณ์", R.drawable.img_healthy),
+                R.color.severity_healthy, R.string.badge_healthy, R.string.sub_healthy, R.drawable.img_healthy),
             DiseaseItem(R.string.disease_others_title, R.string.disease_others_desc,
-                R.color.textColorSecondary, "อื่นๆ", "อาการที่ไม่ตรงกับ 5 โรคหลัก", R.drawable.img_others)
+                R.color.textColorSecondary, R.string.badge_other, R.string.sub_others, R.drawable.img_others)
         )
 
         val badgeColorMap = mapOf(
-            "รุนแรง" to Pair(R.color.statusDanger, R.color.statusDangerSurface),
-            "ระวัง"  to Pair(R.color.statusWarning, R.color.statusWarningSurface),
-            "เฝ้าดู" to Pair(R.color.statusInfo, R.color.statusInfoSurface),
-            "ปกติ"   to Pair(R.color.statusHealthy, R.color.statusHealthySurface),
-            "อื่นๆ"  to Pair(R.color.textColorSecondary, R.color.background_light)
+            R.string.badge_critical to Pair(R.color.statusDanger, R.color.statusDangerSurface),
+            R.string.badge_warning to Pair(R.color.statusWarning, R.color.statusWarningSurface),
+            R.string.badge_watch to Pair(R.color.statusInfo, R.color.statusInfoSurface),
+            R.string.badge_healthy to Pair(R.color.statusHealthy, R.color.statusHealthySurface),
+            R.string.badge_other to Pair(R.color.textColorSecondary, R.color.background_light)
         )
 
         for (disease in diseases) {
@@ -62,31 +61,36 @@ class DiseaseListActivity : BaseActivity() {
 
             // Indicator dot color
             val indicator = cardView.findViewById<View>(R.id.viewIndicator)
-            val dotDrawable = GradientDrawable()
-            dotDrawable.shape = GradientDrawable.OVAL
-            dotDrawable.setColor(getColor(disease.indicatorColor))
+            val dotDrawable = GradientDrawable().apply {
+                shape = GradientDrawable.OVAL
+                setColor(getColor(disease.indicatorColor))
+            }
             indicator.background = dotDrawable
 
             // Title & subtitle
             cardView.findViewById<TextView>(R.id.tvCardTitle).text = getString(disease.titleRes)
-            cardView.findViewById<TextView>(R.id.tvCardSubtitle).text = disease.subtitle
+            cardView.findViewById<TextView>(R.id.tvCardSubtitle).text = getString(disease.subtitleRes)
 
             // Badge
             val badge = cardView.findViewById<TextView>(R.id.tvBadge)
-            badge.text = disease.badge
-            val colors = badgeColorMap[disease.badge]
+            badge.text = getString(disease.badgeRes)
+            val colors = badgeColorMap[disease.badgeRes]
             if (colors != null) {
                 badge.setTextColor(getColor(colors.first))
-                val badgeBg = GradientDrawable()
-                badgeBg.shape = GradientDrawable.RECTANGLE
-                badgeBg.cornerRadius = 24f
-                badgeBg.setColor(getColor(colors.second))
+                val badgeBg = GradientDrawable().apply {
+                    shape = GradientDrawable.RECTANGLE
+                    cornerRadius = 24f
+                    setColor(getColor(colors.second))
+                }
                 badge.background = badgeBg
             }
 
-            // Click
+            UiAnimations.applyPressEffect(cardView)
+
             cardView.setOnClickListener {
                 val intent = Intent(this, DiseaseDetailActivity::class.java)
+                intent.putExtra("TITLE_RES", disease.titleRes)
+                intent.putExtra("DESC_RES", disease.descRes)
                 intent.putExtra("TITLE", getString(disease.titleRes))
                 intent.putExtra("DESC", getString(disease.descRes))
                 if (disease.imageRes != null) {
@@ -97,5 +101,7 @@ class DiseaseListActivity : BaseActivity() {
 
             container.addView(cardView)
         }
+
+        UiAnimations.playStaggeredEntrance(container, startDelayMs = 45L, stepMs = 45L)
     }
 }

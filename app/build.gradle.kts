@@ -15,14 +15,15 @@ android {
         applicationId = "com.cateatmars_dev.yoedodurian"
         minSdk = 24
         targetSdk = 36
-        versionCode = 3
-        versionName = "1.0.0"
+        versionCode = 10
+        versionName = "1.0.3"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -45,7 +46,7 @@ android {
 
     packaging {
         jniLibs {
-            useLegacyPackaging = true
+            useLegacyPackaging = false
         }
     }
 }
@@ -54,19 +55,18 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.constraintlayout)
 
-    // CameraX
-    val cameraxVersion = "1.3.1"
+    // CameraX (1.4.1+ includes 16 KB aligned native libraries)
+    val cameraxVersion = "1.4.1"
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
 
-    // TFLite
-    implementation("org.tensorflow:tensorflow-lite:2.17.0")
-    implementation("org.tensorflow:tensorflow-lite-support:0.5.0")
-    implementation("org.tensorflow:tensorflow-lite-metadata:0.5.0")
+    // LiteRT (Google's 16 KB page-aligned replacement for TensorFlow Lite)
+    implementation("com.google.ai.edge.litert:litert:1.4.2")
 
     // Chart and JSON
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")

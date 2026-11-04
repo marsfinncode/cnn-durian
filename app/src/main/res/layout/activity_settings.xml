@@ -28,15 +28,76 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/settingsCardsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
 
+            <!-- Language Selection Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/language_setting"
+                        android:textSize="18sp"
+                        android:textColor="@color/textColorPrimary"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/rbLangSystem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lang_system"
+                            android:textSize="16sp"
+                            android:paddingVertical="8dp"
+                            android:buttonTint="@color/colorPrimary" />
+
+                        <RadioButton
+                            android:id="@+id/rbLangTh"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lang_th"
+                            android:textSize="16sp"
+                            android:paddingVertical="8dp"
+                            android:buttonTint="@color/colorPrimary" />
+
+                        <RadioButton
+                            android:id="@+id/rbLangEn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lang_en"
+                            android:textSize="16sp"
+                            android:paddingVertical="8dp"
+                            android:buttonTint="@color/colorPrimary" />
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <!-- Font Size Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
                 app:strokeWidth="0dp"
@@ -66,7 +127,7 @@
                             android:id="@+id/rbNormal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ปกติ (Normal)"
+                            android:text="@string/font_normal"
                             android:textSize="16sp"
                             android:paddingVertical="8dp"
                             android:buttonTint="@color/colorPrimary" />
@@ -75,7 +136,7 @@
                             android:id="@+id/rbLarge"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ใหญ่ (Large)"
+                            android:text="@string/font_large"
                             android:textSize="18sp"
                             android:paddingVertical="8dp"
                             android:buttonTint="@color/colorPrimary" />
@@ -84,7 +145,7 @@
                             android:id="@+id/rbExtraLarge"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ใหญ่มาก (Extra Large)"
+                            android:text="@string/font_extra_large"
                             android:textSize="22sp"
                             android:paddingVertical="8dp"
                             android:buttonTint="@color/colorPrimary" />
@@ -111,7 +172,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ตัวอย่างข้อความ"
+                        android:text="@string/preview_title"
                         android:textSize="14sp"
                         android:textColor="@color/colorPrimary"
                         android:textStyle="bold"
@@ -121,7 +182,7 @@
                         android:id="@+id/tvPreview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="โรครากเน่าโคนเน่า เกิดจากเชื้อรา Phytophthora palmivora ใบเหลืองซีด มีคราบน้ำยางสีน้ำตาลแดงไหลจากแผล"
+                        android:text="@string/preview_text"
                         android:textSize="16sp"
                         android:textColor="@color/textColorPrimary"
                         android:lineSpacingExtra="4dp" />
@@ -130,6 +191,7 @@
 
             <!-- Storage Management Card -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardManageStorage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -158,11 +220,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="16dp"
-                        android:text="จัดการพื้นที่จัดเก็บ (ประวัติสแกน)"
+                        android:text="@string/storage_manager_title"
                         android:textSize="18sp"
                         android:textColor="@color/textColorPrimary"
                         android:textStyle="bold" />
-                        
+
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
@@ -354,12 +416,39 @@
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="32dp">
 
-                <!-- Logos Row -->
+                <!-- Logos Row: BUU (Left) -> MWIT (Right) -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
+
+                    <!-- Burapha University Logo Button -->
+                    <LinearLayout
+                        android:id="@+id/btnLogoBuu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:id="@+id/ivLogoBuu"
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/logo_buu"
+                            android:contentDescription="Burapha University" />
+                    </LinearLayout>
+
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="24dp"
+                        android:layout_height="1dp" />
 
                     <!-- MWIT Logo Button -->
                     <LinearLayout
@@ -375,39 +464,12 @@
 
                         <ImageView
                             android:id="@+id/ivLogoMwit"
-                            android:layout_width="54dp"
-                            android:layout_height="58dp"
+                            android:layout_width="58dp"
+                            android:layout_height="62dp"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/ic_logo_mwit"
+                            android:src="@drawable/logo_mwit"
                             android:contentDescription="Mahidol Wittayanusorn School" />
-                    </LinearLayout>
-
-                    <!-- Spacing -->
-                    <View
-                        android:layout_width="20dp"
-                        android:layout_height="1dp" />
-
-                    <!-- GitHub Logo Button -->
-                    <LinearLayout
-                        android:id="@+id/btnLogoGithub"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <ImageView
-                            android:id="@+id/ivLogoGithub"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_logo_github"
-                            android:contentDescription="GitHub cnn-durian" />
                     </LinearLayout>
 
                 </LinearLayout>

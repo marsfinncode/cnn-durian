@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
@@ -35,7 +36,7 @@
                 android:id="@+id/tvScanName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ชื่อการสแกน"
+                tools:text="Scan Name"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -44,13 +45,13 @@
                 android:id="@+id/tvScanDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="07 ต.ค. 2026 20:27"
+                tools:text="07 Oct 2026 20:27"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="12sp"
                 android:layout_marginTop="2dp" />
 
         </LinearLayout>
-        
+
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"

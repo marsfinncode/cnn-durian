@@ -4,22 +4,32 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
-import androidx.camera.core.*
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageProxy
+import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 import com.google.gson.Gson
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 class TreeScanActivity : BaseActivity() {
+
+    override val isFullBleedScreen: Boolean = true
+    override val isDarkNavigationBar: Boolean = true
 
     companion object {
         private const val TAG = "TreeScanActivity"
@@ -35,9 +45,10 @@ class TreeScanActivity : BaseActivity() {
     private lateinit var objectDetectorHelper: ObjectDetectorHelper
 
     private var frameCount = 0
-    private val INFERENCE_EVERY_N_FRAMES = 3
+    private val INFERENCE_EVERY_N_FRAMES = 4
     @Volatile private var isDestroyed = false
-    
+    @Volatile private var isProcessingFrame = false
+
     private var isScanning = false
     private val scanResultsMap = mutableMapOf<String, Int>()
 
@@ -45,14 +56,17 @@ class TreeScanActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tree_scan)
 
-        previewView     = findViewById(R.id.previewView)
-        overlayView     = findViewById(R.id.overlayView)
+        previewView = findViewById(R.id.previewView)
+        overlayView = findViewById(R.id.overlayView)
         tvDetectionInfo = findViewById(R.id.tvDetectionInfo)
-        btnBack         = findViewById(R.id.btnBack)
-        btnToggleScan   = findViewById(R.id.btnToggleScan)
+        btnBack = findViewById(R.id.btnBack)
+        btnToggleScan = findViewById(R.id.btnToggleScan)
+
+        setupInsets()
+        UiAnimations.applyPressEffect(btnBack, btnToggleScan)
 
         btnBack.setOnClickListener { finish() }
-        
+
         btnToggleScan.setOnClickListener {
             if (isScanning) {
                 stopScan()
@@ -67,6 +81,32 @@ class TreeScanActivity : BaseActivity() {
         startCamera()
     }
 
+    private fun setupInsets() {
+        val initBackTop = (btnBack.layoutParams as ViewGroup.MarginLayoutParams).topMargin
+        val initBackStart = (btnBack.layoutParams as ViewGroup.MarginLayoutParams).marginStart
+        val initToggleBottom = (btnToggleScan.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin
+        val initToggleStart = (btnToggleScan.layoutParams as ViewGroup.MarginLayoutParams).marginStart
+        val initToggleEnd = (btnToggleScan.layoutParams as ViewGroup.MarginLayoutParams).marginEnd
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.treeScanRoot)) { _, insets ->
+            val bars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            val backLp = btnBack.layoutParams as ViewGroup.MarginLayoutParams
+            backLp.topMargin = initBackTop + bars.top
+            backLp.marginStart = initBackStart + bars.left
+            btnBack.layoutParams = backLp
+
+            val toggleLp = btnToggleScan.layoutParams as ViewGroup.MarginLayoutParams
+            toggleLp.bottomMargin = initToggleBottom + bars.bottom
+            toggleLp.marginStart = initToggleStart + bars.left
+            toggleLp.marginEnd = initToggleEnd + bars.right
+            btnToggleScan.layoutParams = toggleLp
+
+            insets
+        }
+    }
+
     private fun startScan() {
         isScanning = true
         scanResultsMap.clear()
@@ -78,23 +118,23 @@ class TreeScanActivity : BaseActivity() {
         isScanning = false
         btnToggleScan.text = getString(R.string.start_scan)
         btnToggleScan.backgroundTintList = ContextCompat.getColorStateList(this, R.color.colorPrimary)
-        
+
         if (scanResultsMap.isEmpty()) {
             return
         }
 
-        val input = android.widget.EditText(this)
-        input.hint = "เช่น ต้นทุเรียนหลังบ้าน..."
+        val input = EditText(this)
+        input.hint = getString(R.string.scan_dialog_hint)
         input.setPadding(40, 40, 40, 40)
 
         android.app.AlertDialog.Builder(this)
-            .setTitle("ตั้งชื่อการสแกน")
+            .setTitle(getString(R.string.scan_dialog_title))
             .setView(input)
-            .setPositiveButton("บันทึก") { _, _ ->
+            .setPositiveButton(getString(R.string.btn_save)) { _, _ ->
                 val name = input.text.toString().trim()
                 saveScanAndProceed(name)
             }
-            .setNegativeButton("ยกเลิก") { dialog, _ ->
+            .setNegativeButton(getString(R.string.btn_cancel)) { dialog, _ ->
                 dialog.cancel()
                 scanResultsMap.clear()
             }
@@ -105,22 +145,22 @@ class TreeScanActivity : BaseActivity() {
     private fun saveScanAndProceed(customName: String) {
         val scansDir = File(filesDir, "scans")
         if (!scansDir.exists()) scansDir.mkdirs()
-        
-        val dateFormat = SimpleDateFormat("dd MMM yyyy HH:mm", Locale("th", "TH"))
+
+        val dateFormat = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        
+
         val finalName = if (customName.isEmpty()) dateFormat.format(Date()) else customName
-        
+
         val wrapper = mapOf(
             "name" to finalName,
             "timestamp" to timestamp,
             "counts" to scanResultsMap
         )
-        
+
         val scanFile = File(scansDir, "scan_$timestamp.json")
         val json = Gson().toJson(wrapper)
         scanFile.writeText(json)
-        
+
         val intent = Intent(this, ScanResultActivity::class.java)
         intent.putExtra("SCAN_FILE_PATH", scanFile.absolutePath)
         startActivity(intent)
@@ -160,7 +200,7 @@ class TreeScanActivity : BaseActivity() {
     }
 
     private fun processImage(imageProxy: ImageProxy) {
-        if (isDestroyed) {
+        if (isDestroyed || isProcessingFrame) {
             imageProxy.close()
             return
         }
@@ -171,13 +211,30 @@ class TreeScanActivity : BaseActivity() {
             return
         }
 
-        val bitmap = imageProxy.toBitmap()
+        isProcessingFrame = true
+        val bitmap = try {
+            imageProxy.toBitmap()
+        } catch (_: Exception) {
+            imageProxy.close()
+            isProcessingFrame = false
+            return
+        }
         val rotatedBitmap = rotateBitmap(bitmap, imageProxy.imageInfo.rotationDegrees.toFloat())
         imageProxy.close()
 
-        if (isDestroyed) return
+        if (isDestroyed) {
+            isProcessingFrame = false
+            return
+        }
 
-        val detections = objectDetectorHelper.detect(rotatedBitmap)
+        val detections = try {
+            objectDetectorHelper.detect(rotatedBitmap)
+        } catch (e: Exception) {
+            Log.e(TAG, "Detection failed", e)
+            emptyList()
+        } finally {
+            isProcessingFrame = false
+        }
 
         runOnUiThread {
             if (isDestroyed) return@runOnUiThread
@@ -189,9 +246,8 @@ class TreeScanActivity : BaseActivity() {
             )
 
             if (isScanning && detections.isNotEmpty()) {
-                // Find highest confidence detection
                 val bestDetection = detections.maxByOrNull { it.confidence }
-                if (bestDetection != null && bestDetection.confidence > 0.5f) { // threshold
+                if (bestDetection != null && bestDetection.confidence > 0.5f) {
                     val label = bestDetection.label
                     scanResultsMap[label] = scanResultsMap.getOrDefault(label, 0) + 1
                 }
@@ -201,7 +257,8 @@ class TreeScanActivity : BaseActivity() {
                 tvDetectionInfo.text = getString(R.string.scanning)
             } else {
                 val summary = detections.take(3).joinToString(" | ") {
-                    "${it.label}: ${"%.0f".format(it.confidence * 100)}%"
+                    val friendlyName = ThemeUtils.getDisplayLabel(this, it.label)
+                    "$friendlyName: ${"%.0f".format(it.confidence * 100)}%"
                 }
                 tvDetectionInfo.text = summary
             }
@@ -217,8 +274,10 @@ class TreeScanActivity : BaseActivity() {
     override fun onDestroy() {
         isDestroyed = true
         super.onDestroy()
-        cameraExecutor.shutdown()
-        cameraExecutor.awaitTermination(500, TimeUnit.MILLISECONDS)
+        try {
+            cameraExecutor.shutdownNow()
+            cameraExecutor.awaitTermination(300, TimeUnit.MILLISECONDS)
+        } catch (_: Exception) {}
         objectDetectorHelper.close()
     }
 }

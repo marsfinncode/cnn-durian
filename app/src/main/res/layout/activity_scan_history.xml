@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ประวัติการสแกน"
+            android:text="@string/title_scan_history"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -34,7 +34,6 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="พื้นที่ที่ใช้: 0 KB"
             android:textColor="@color/textColorSecondary"
             android:layout_gravity="center_vertical" />
 
@@ -42,7 +41,7 @@
             android:id="@+id/btnClearData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ล้างข้อมูล"
+            android:text="@string/btn_clear_data"
             app:backgroundTint="@color/statusDanger" />
     </LinearLayout>
 

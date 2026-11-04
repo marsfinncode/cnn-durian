@@ -13,7 +13,6 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:titleTextColor="@color/white"
-        app:subtitleTextColor="#B2DFDB"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:navigationIconTint="@color/white" />
 
@@ -38,24 +37,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:contentDescription="ภาพตัวอย่างของโรค" />
+                    android:contentDescription="@string/disease_sample_image" />
 
-                <!-- Placeholder text (shown when no image) -->
                 <TextView
                     android:id="@+id/tvImagePlaceholder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="📷  เตรียมใส่รูปภาพ"
+                    android:text="@string/image_placeholder"
                     android:textSize="16sp"
                     android:textColor="@color/textColorHint" />
             </FrameLayout>
 
             <!-- Content Card -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDetailContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="-20dp"
                 android:layout_marginBottom="24dp"
                 app:cardCornerRadius="20dp"
@@ -67,9 +66,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="24dp">
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="16dp">
 
-                    <!-- Title -->
                     <TextView
                         android:id="@+id/tvDetailTitle"
                         android:layout_width="match_parent"
@@ -79,21 +78,27 @@
                         android:textStyle="bold"
                         android:layout_marginBottom="4dp" />
 
-                    <!-- Divider -->
                     <View
                         android:layout_width="48dp"
                         android:layout_height="3dp"
                         android:layout_marginBottom="16dp"
                         android:background="@color/colorAccent" />
 
-                    <!-- Description (HTML rendered) -->
+                    <!-- Structured Visual Guide Container -->
+                    <LinearLayout
+                        android:id="@+id/guideContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
                     <TextView
                         android:id="@+id/tvDetailDesc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
                         android:textColor="@color/textColorPrimary"
-                        android:lineSpacingExtra="6dp" />
+                        android:lineSpacingExtra="6dp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>

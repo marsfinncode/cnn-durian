@@ -10,14 +10,16 @@
     <color name="colorPrimary">#059669</color>
     <color name="colorPrimaryDark">#047857</color>
     <color name="colorPrimaryLight">#34D399</color>
+    <color name="classic_forest_green">#1B5E20</color>
 
-    <!-- Brand Accent / Laser (Neon Mint) -->
+    <!-- Brand Accent -->
     <color name="colorAccent">#00F59B</color>
 
     <!-- Surfaces & Backgrounds (Light Mode) -->
     <color name="background_light">#F8FAF8</color>
     <color name="surfaceColor">#FFFFFF</color>
     <color name="border_light">#E5E7EB</color>
+    <color name="card_stroke_subtle">#0D000000</color>
 
     <!-- Text (Light Mode) -->
     <color name="textColorPrimary">#0F241C</color>

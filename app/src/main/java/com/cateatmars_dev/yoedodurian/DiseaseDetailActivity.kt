@@ -1,6 +1,10 @@
 package com.cateatmars_dev.yoedodurian
 
 import android.os.Bundle
+import android.view.View
+import android.view.animation.DecelerateInterpolator
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.android.material.appbar.MaterialToolbar
 
@@ -9,30 +13,43 @@ class DiseaseDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disease_detail)
 
-        val title = intent.getStringExtra("TITLE") ?: ""
-        val desc = intent.getStringExtra("DESC") ?: ""
+        val titleRes = intent.getIntExtra("TITLE_RES", -1)
+        val labelExtra = intent.getStringExtra("DISEASE_KEY")
+
+        val title = if (titleRes != -1) getString(titleRes) else (intent.getStringExtra("TITLE") ?: "")
 
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbarDetail)
         toolbar.title = title
-        toolbar.subtitle = "กรมวิชาการเกษตร"
+        toolbar.subtitle = null
         toolbar.setNavigationOnClickListener { finish() }
 
         findViewById<TextView>(R.id.tvDetailTitle).text = title
 
-        // Render HTML formatted content
-        val tvDetailDesc = findViewById<TextView>(R.id.tvDetailDesc)
-        tvDetailDesc.text = android.text.Html.fromHtml(desc, android.text.Html.FROM_HTML_MODE_COMPACT)
-        tvDetailDesc.movementMethod = android.text.method.LinkMovementMethod.getInstance()
-            
+        val guideContainer = findViewById<LinearLayout>(R.id.guideContainer)
+        val diseaseKey = DiseaseGuideRenderer.resolveKey(titleRes, labelExtra)
+        DiseaseGuideRenderer.populateGuide(this, guideContainer, diseaseKey)
+
         val imageRes = intent.getIntExtra("IMAGE_RES", -1)
-        val ivDiseaseImage = findViewById<android.widget.ImageView>(R.id.ivDiseaseImage)
+        val ivDiseaseImage = findViewById<ImageView>(R.id.ivDiseaseImage)
         val tvImagePlaceholder = findViewById<TextView>(R.id.tvImagePlaceholder)
-        
+
         if (imageRes != -1) {
             ivDiseaseImage.setImageResource(imageRes)
-            tvImagePlaceholder.visibility = android.view.View.GONE
+            tvImagePlaceholder.visibility = View.GONE
         } else {
-            tvImagePlaceholder.visibility = android.view.View.VISIBLE
+            tvImagePlaceholder.visibility = View.VISIBLE
+        }
+
+        // Smooth card entrance animation
+        findViewById<View>(R.id.cardDetailContent)?.apply {
+            alpha = 0f
+            translationY = 20f * resources.displayMetrics.density
+            animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(340L)
+                .setInterpolator(DecelerateInterpolator(1.5f))
+                .start()
         }
     }
 }

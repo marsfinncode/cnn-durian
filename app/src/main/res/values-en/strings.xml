@@ -1,0 +1,143 @@
+<resources>
+    <string name="app_name">You Only Eat Durian Once</string>
+    <string name="splash_subtitle">Durian Leaf Scanner</string>
+    <string name="app_desc">AI-powered durian leaf disease detection application to assist farmers in precision orchard management</string>
+    <string name="camera_permission_denied">Camera permission is required to use this feature.</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_settings">Settings</string>
+    <string name="btn_back">Back</string>
+
+    <!-- Main Navigation Actions -->
+    <string name="start_detecting">Scan Durian Leaves</string>
+    <string name="action_scan_subtitle">Capture photo for AI disease diagnosis</string>
+    <string name="scan_whole_tree">Whole Tree Scan (Statistics)</string>
+    <string name="action_tree_scan_subtitle">Scan tree perimeter to view disease statistics</string>
+    <string name="action_analyze_image_title">Analyze from Gallery</string>
+    <string name="action_analyze_image_subtitle">Select leaf image from device gallery</string>
+    <string name="btn_disease_info">Durian Disease Database</string>
+    <string name="action_disease_info_subtitle">Information &amp; treatment for 7 disease types</string>
+    <string name="title_disease_info">Durian Disease Database (7 Classes)</string>
+    <string name="disease_list_subtitle">Select a disease to view detailed guide</string>
+
+    <!-- Severity Badges -->
+    <string name="badge_critical">Critical</string>
+    <string name="badge_warning">Warning</string>
+    <string name="badge_watch">Monitor</string>
+    <string name="badge_healthy">Healthy</string>
+    <string name="badge_other">Other</string>
+
+    <!-- Short Disease Display Labels (Camera & Charts) -->
+    <string name="label_short_phytophthora">Phytophthora</string>
+    <string name="label_short_anthracnose">Anthracnose</string>
+    <string name="label_short_rhizoctonia">Rhizoctonia</string>
+    <string name="label_short_phomopsis">Phomopsis</string>
+    <string name="label_short_algal_spot">Algal Spot</string>
+    <string name="label_short_healthy">Healthy</string>
+    <string name="label_short_other">Other</string>
+
+    <!-- Disease Subtitles -->
+    <string name="sub_phytophthora">Fungus: Phytophthora palmivora</string>
+    <string name="sub_anthracnose">Fungus: Colletotrichum spp.</string>
+    <string name="sub_rhizoctonia">Fungus: Rhizoctonia solani</string>
+    <string name="sub_phomopsis">Fungus: Phomopsis spp.</string>
+    <string name="sub_algal_spot">Parasitic Alga: Cephaleuros virescens</string>
+    <string name="sub_healthy">Healthy, intact leaves</string>
+    <string name="sub_others">Symptoms outside the 5 main diseases</string>
+    <string name="dept_agriculture">Department of Agriculture</string>
+    <string name="image_placeholder">📷  Image placeholder</string>
+    <string name="disease_sample_image">Sample disease image</string>
+
+    <!-- Disease Detailed Guides -->
+    <string name="disease_phytophthora_title">Phytophthora Root &amp; Stem Rot</string>
+    <string name="disease_phytophthora_desc"><![CDATA[<b>Pathogen:</b> <i>Phytophthora palmivora</i> fungus<br/><br/><b>Symptoms:</b><br/>• <b>Trunk &amp; Branches:</b> Pale chlorotic leaves, reddish-brown resinous exudate oozing from trunk wounds. Scraped bark reveals dark brown necrotic internal tissue; severe girdling kills the tree.<br/>• <b>Roots:</b> Terminal branch wilting; feeder roots become brown, soft, and rotten.<br/>• <b>Leaves:</b> Water-soaked light brown spots that rapidly turn dark brown or scalded-looking.<br/><br/><b>Prevention &amp; Control:</b><br/>1. <b>Soil &amp; Water Management:</b> Improve drainage to avoid standing water. Balance soil pH to 6.0–6.5 with agricultural lime or dolomite.<br/>2. <b>Mechanical Method:</b> Scrape away infected bark and apply fosetyl-aluminium 80% WP (80–100 g/1 L water) or metalaxyl 25% WP (50–60 g/1 L water) paste every 7 days until dry.<br/>3. <b>Chemical Control:</b> Spray or drench with fosetyl-aluminium or metalaxyl at 30–50 g/20 L water. For severe cases, trunk-inject phosphonic acid 40% SL (20 ml/tree).<br/>4. <b>Biological Control:</b> Broadcast compost-mixed <i>Trichoderma</i> around the canopy (3–5 kg/tree).]]></string>
+
+    <string name="disease_anthracnose_title">Anthracnose Leaf Blight</string>
+    <string name="disease_anthracnose_desc" formatted="false"><![CDATA[<b>Pathogen:</b> <i>Colletotrichum gloeosporioides</i> fungus<br/><br/><b>Symptoms:</b><br/>• <b>Leaves:</b> Reddish-brown spots with well-defined margins expanding into concentric target-like rings across the blade, leading to desiccation and premature defoliation.<br/>• <b>Flowers &amp; Fruit:</b> Black floral rot and drop. Fruit develops small sunken brown spots along spines that rot upon ripening. Severe during hot, humid conditions.<br/><br/><b>Prevention &amp; Control:</b><br/>1. <b>Canopy Pruning:</b> Prune dense canopies to maximize airflow and sunlight penetration; remove and incinerate diseased branches.<br/>2. <b>Fungicide Spray:</b> At onset of symptoms, spray prochloraz (20–30 ml/20 L), azoxystrobin (10–20 ml/20 L), or mancozeb (40–50 g/20 L) across canopy every 5–7 days.<br/>3. <b>Biological Control:</b> Spray <i>Trichoderma</i> or <i>Bacillus subtilis</i> (BS).]]></string>
+
+    <string name="disease_rhizoctonia_title">Rhizoctonia Leaf Blight</string>
+    <string name="disease_rhizoctonia_desc" formatted="false"><![CDATA[<b>Pathogen:</b> <i>Rhizoctonia solani</i> fungus (prevalent in continuous rainy season)<br/><br/><b>Symptoms:</b><br/>Initial scalded water-soaked spots changing to brown. Under high humidity, distinctive fine white mycelial webs bind leaves together in tangled clusters. Leaves wither and remain glued to twigs; severe cases lead to extensive shoot dieback.<br/><br/><b>Prevention &amp; Control:</b><br/>1. <b>Pruning &amp; Sanitation:</b> Crucial to thin inner branches so sunlight reaches foliage. Rake and destroy fallen leaves outside orchard.<br/>2. <b>Nutrient Balance:</b> Avoid excessive nitrogen fertilizer during outbreaks to reduce overly lush new flushes.<br/>3. <b>Fungicide Application:</b> Spray hexaconazole (20–30 ml/20 L) or copper oxychloride (30–50 g/20 L) every 7 days.<br/>4. <b>Biological Control:</b> Apply <i>Trichoderma</i> 1–2 months prior to monsoon onset.]]></string>
+
+    <string name="disease_phomopsis_title">Phomopsis Leaf Spot</string>
+    <string name="disease_phomopsis_desc" formatted="false"><![CDATA[<b>Pathogen:</b> <i>Phomopsis</i> spp. fungi<br/><br/><b>Symptoms:</b><br/>Small necrotic dark brown lesions surrounded by a prominent chlorotic yellow halo. Center of older lesions turns greyish-white with tiny black punctate pycnidia. The pathogen often remains latent until host trees experience physiological stress.<br/><br/><b>Prevention &amp; Control:</b><br/>1. <b>Orchard Hygiene:</b> Sweep up and destroy infected leaf litter to reduce inoculum.<br/>2. <b>Tree Nutrition:</b> Ensure adequate water and balanced micronutrients to prevent plant stress.<br/>3. <b>Chemical Treatment:</b> Spray systemic fungicides such as hexaconazole (20–30 ml/20 L) or difenoconazole (10–15 ml/20 L) rotated with mancozeb (40–50 g/20 L).]]></string>
+
+    <string name="disease_algal_spot_title">Algal Leaf Spot (Cephaleuros)</string>
+    <string name="disease_algal_spot_desc" formatted="false"><![CDATA[<b>Pathogen:</b> <i>Cephaleuros virescens</i> parasitic green alga<br/><br/><b>Symptoms:</b><br/>Initially small, raised greenish-grey circular velvety spots. As thalli mature, they turn reddish-orange or rust-brown with a cushion-like texture on leaves and young twigs. Causes chlorosis, leaf drop, and twig dieback in humid, shaded orchards.<br/><br/><b>Prevention &amp; Control:</b><br/>1. <b>Canopy Aeration:</b> Prune dense inner branches to promote sunlight penetration and reduce microclimate humidity.<br/>2. <b>Foliar Spray:</b> Apply copper oxychloride (30–50 g/20 L) or copper hydroxide (20–30 g/20 L) thoroughly over affected foliage with an agricultural surfactant every 7–10 days.]]></string>
+
+    <string name="disease_healthy_title">Healthy Leaf</string>
+    <string name="disease_healthy_desc"><![CDATA[<b>Characteristics:</b><br/>Foliage exhibits uniform deep green color, smooth glossy cuticle, strong turgidity, and is free of necrotic spots, marginal scorching, or fungal/pest damage.<br/><br/><b>Management:</b><br/>Maintain appropriate irrigation schedules and balanced macro/micronutrient fertilization matching vegetative growth stages. Continue periodic scouting to catch any early pest or disease signs.]]></string>
+
+    <string name="disease_others_title">Other Abnormalities</string>
+    <string name="disease_others_desc"><![CDATA[<b>Characteristics:</b><br/>Anomalies not attributable to the 5 primary diseases. Examples include chewing insect damage, solar radiation scorching, micronutrient deficiencies (e.g. interveinal chlorosis), or mechanical/weather damage.<br/><br/><b>Management:</b><br/>If symptoms diverge from the catalogued diseases, collect representative leaf specimens and consult local agricultural extension officers or certified agronomists for targeted diagnosis.]]></string>
+
+    <!-- Image Analysis -->
+    <string name="title_image_analysis">Image Analysis Results</string>
+    <string name="loading_ai_analysis">Analyzing image probability with AI...</string>
+    <string name="results_header_detected">Possible Diseases</string>
+    <string name="results_header_not_found">No clear disease symptoms detected</string>
+    <string name="results_empty_desc">AI could not confidently identify diseases from this image. Please capture a clearer photo or focus closer on the affected leaf area.</string>
+    <string name="treatment_advice_header">Symptoms &amp; Treatment Advice</string>
+    <string name="no_treatment_advice">No additional treatment advice available for this class.</string>
+    <string name="disclaimer_ai_text">These results are preliminary predictions generated by an AI model and may contain inaccuracies. Please evaluate together with physical tree symptoms or consult agricultural specialists.</string>
+    <string name="image_not_found">Image not found</string>
+    <string name="error_loading_image">An error occurred while loading the image</string>
+
+    <!-- Camera & Detection -->
+    <string name="no_diseases_detected">No diseases detected</string>
+    <string name="detected_prefix">Detected: %s</string>
+
+    <!-- Tree Scan Feature -->
+    <string name="tree_scan_title">Whole Tree Scan</string>
+    <string name="start_scan">Start Scan</string>
+    <string name="stop_scan">Stop Scan &amp; View Stats</string>
+    <string name="scanning">Scanning...</string>
+    <string name="scan_dialog_title">Name This Scan</string>
+    <string name="scan_dialog_hint">e.g. Backyard Tree #1...</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- Scan History & Results -->
+    <string name="title_scan_history">Scan History</string>
+    <string name="scan_history">Scan History</string>
+    <string name="storage_used">Storage used: %s</string>
+    <string name="btn_clear_data">Clear Data</string>
+    <string name="confirm_clear_title">Confirm Delete</string>
+    <string name="confirm_clear_message">Are you sure you want to delete all scan history?</string>
+    <string name="btn_delete">Delete</string>
+    <string name="no_data">No scan data available</string>
+    <string name="no_scan_history_toast">No scan history found</string>
+    <string name="data_cleared">Data cleared successfully</string>
+    <string name="chart_legend_diseases">Detected Diseases</string>
+    <string name="chart_combined_title">Detected Diseases (Combined History)</string>
+    <string name="file_size_format">File size: %d KB</string>
+
+    <!-- Settings & Language -->
+    <string name="language_setting">Language / ภาษา</string>
+    <string name="lang_system">System Default</string>
+    <string name="lang_th">ภาษาไทย (Thai)</string>
+    <string name="lang_en">English</string>
+    <string name="font_size">Font Size</string>
+    <string name="font_normal">Normal</string>
+    <string name="font_large">Large</string>
+    <string name="font_extra_large">Extra Large</string>
+    <string name="preview_title">Text Preview</string>
+    <string name="preview_text">Phytophthora root rot is caused by Phytophthora palmivora fungus. Leaves turn chlorotic and reddish-brown sap oozes from trunk lesions.</string>
+    <string name="storage_manager_title">Manage Storage (Scan History)</string>
+    <string name="cannot_open_browser">Unable to open web browser</string>
+
+    <!-- Severity Estimation Labels -->
+    <string name="severity_healthy">Healthy</string>
+    <string name="severity_mild">Mild</string>
+    <string name="severity_moderate">Moderate</string>
+    <string name="severity_critical">Critical</string>
+
+    <!-- About App Strings -->
+    <string name="title_about_app">About Application</string>
+    <string name="app_version_label">Version</string>
+    <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="privacy_policy_subtitle">Data safety &amp; permissions</string>
+    <string name="github_repo_title">Source Code &amp; Project</string>
+    <string name="github_repo_subtitle">GitHub Repository</string>
+    <string name="copyright_text">Copyright © 2026 cateatmars.dev</string>
+    <string name="license_text">Licensed under the Apache License, Version 2.0</string>
+    <string name="developer_credits">Burapha University and Mahidol Wittayanusorn School</string>
+</resources>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -37,6 +38,8 @@ class ScanHistoryActivity : BaseActivity() {
         tvStorageUsed = findViewById(R.id.tvStorageUsed)
         btnClearData = findViewById(R.id.btnClearData)
 
+        UiAnimations.applyPressEffect(btnClearData)
+
         rvHistory.layoutManager = LinearLayoutManager(this)
         adapter = HistoryAdapter(historyList) { scanFile ->
             val intent = Intent(this, ScanResultActivity::class.java)
@@ -47,10 +50,10 @@ class ScanHistoryActivity : BaseActivity() {
 
         btnClearData.setOnClickListener {
             AlertDialog.Builder(this)
-                .setTitle("ยืนยันการลบ")
-                .setMessage("คุณต้องการลบประวัติการสแกนทั้งหมดใช่หรือไม่?")
-                .setPositiveButton("ลบ") { _, _ -> clearScanData() }
-                .setNegativeButton("ยกเลิก", null)
+                .setTitle(getString(R.string.confirm_clear_title))
+                .setMessage(getString(R.string.confirm_clear_message))
+                .setPositiveButton(getString(R.string.btn_delete)) { _, _ -> clearScanData() }
+                .setNegativeButton(getString(R.string.btn_cancel), null)
                 .show()
         }
 
@@ -69,9 +72,8 @@ class ScanHistoryActivity : BaseActivity() {
 
         if (scansDir.exists() && scansDir.listFiles() != null) {
             val files = scansDir.listFiles()!!
-            // Sort by last modified descending (newest first)
             files.sortByDescending { it.lastModified() }
-            
+
             val gson = Gson()
             val type = object : TypeToken<Map<String, Any>>() {}.type
 
@@ -82,10 +84,9 @@ class ScanHistoryActivity : BaseActivity() {
                     val wrapper: Map<String, Any> = gson.fromJson(json, type)
                     val name = wrapper["name"] as? String ?: "Diseases"
                     val timestamp = wrapper["timestamp"] as? String ?: ""
-                    
+
                     historyList.add(ScanFile(f, name, timestamp))
-                } catch (e: Exception) {
-                    // Fallback for old files without wrapper
+                } catch (_: Exception) {
                     historyList.add(ScanFile(f, "Unknown Scan", ""))
                 }
             }
@@ -98,10 +99,10 @@ class ScanHistoryActivity : BaseActivity() {
         } else {
             String.format("%.2f KB", totalSize / 1024.0)
         }
-        tvStorageUsed.text = "พื้นที่ที่ใช้: $sizeStr"
-        
+        tvStorageUsed.text = getString(R.string.storage_used, sizeStr)
+
         if (historyList.isEmpty()) {
-            Toast.makeText(this, "ไม่มีประวัติการสแกน", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.no_scan_history_toast), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -121,11 +122,19 @@ class ScanHistoryActivity : BaseActivity() {
         private val onItemClick: (ScanFile) -> Unit
     ) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
+        private var lastAnimatedPosition = -1
+
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val tvName: TextView = view.findViewById(R.id.tvScanName)
             val tvDate: TextView = view.findViewById(R.id.tvScanDate)
             init {
-                view.setOnClickListener { onItemClick(list[adapterPosition]) }
+                UiAnimations.applyPressEffect(view)
+                view.setOnClickListener {
+                    val pos = adapterPosition
+                    if (pos != RecyclerView.NO_POSITION) {
+                        onItemClick(list[pos])
+                    }
+                }
             }
         }
 
@@ -138,10 +147,20 @@ class ScanHistoryActivity : BaseActivity() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = list[position]
             holder.tvName.text = item.name
-            
-            // Format timestamp if needed, or just show the filename's date
-            // The item.name already contains the readable date if customName was empty
-            holder.tvDate.text = "File size: ${item.file.length() / 1024} KB"
+            holder.tvDate.text = getString(R.string.file_size_format, item.file.length() / 1024)
+
+            if (position > lastAnimatedPosition) {
+                lastAnimatedPosition = position
+                holder.itemView.alpha = 0f
+                holder.itemView.translationY = 18f * holder.itemView.resources.displayMetrics.density
+                holder.itemView.animate()
+                    .alpha(1f)
+                    .translationY(0f)
+                    .setStartDelay((position * 40L).coerceAtMost(240L))
+                    .setDuration(300L)
+                    .setInterpolator(DecelerateInterpolator())
+                    .start()
+            }
         }
 
         override fun getItemCount() = list.size

@@ -30,7 +30,8 @@ class ObjectDetectorHelper(private val context: Context) {
     companion object {
         private const val TAG = "ObjectDetectorHelper"
         private const val MODEL_FILE = "model.tflite"
-        private const val CONFIDENCE_THRESHOLD = 0.53f  // tune up once detections appear
+        private const val CONFIDENCE_THRESHOLD = 0.50f  // default 50% for other classes
+        private const val RHIZOCTONIA_CONFIDENCE_THRESHOLD = 0.75f  // 75% for Rhizoctonia
         private const val IOU_THRESHOLD = 0.45f
         private const val MAX_DETECTIONS = 10
         private const val NUM_CLASSES = 7
@@ -55,8 +56,9 @@ class ObjectDetectorHelper(private val context: Context) {
             val options = Interpreter.Options().apply { numThreads = 4 }
             interpreter = Interpreter(loadModelFile(), options)
             val inputShape = interpreter!!.getInputTensor(0).shape()
-            inputSize = inputShape[1]
-            Log.d(TAG, "Model loaded. Input: ${inputShape.toList()}")
+            // Handle both NHWC [1, 832, 832, 3] and NCHW [1, 3, 832, 832]
+            inputSize = if (inputShape[1] == 3) inputShape[2] else inputShape[1]
+            Log.d(TAG, "Model loaded. Input: ${inputShape.toList()}, inputSize=$inputSize")
             for (i in 0 until interpreter!!.outputTensorCount)
                 Log.d(TAG, "Output[$i]: ${interpreter!!.getOutputTensor(i).shape().toList()}")
         } catch (e: Exception) {
@@ -148,18 +150,33 @@ class ObjectDetectorHelper(private val context: Context) {
 
             val pixels = IntArray(inputSize * inputSize)
             letterboxed.getPixels(pixels, 0, inputSize, 0, 0, inputSize, inputSize)
-            for (px in pixels) {
-                inputBuffer.putFloat(((px shr 16) and 0xFF) / 255f)
-                inputBuffer.putFloat(((px shr 8)  and 0xFF) / 255f)
-                inputBuffer.putFloat((px           and 0xFF) / 255f)
+            val isNCHW = interp.getInputTensor(0).shape()[1] == 3
+            if (isNCHW) {
+                // NCHW format: all R first, then all G, then all B
+                val totalPx = inputSize * inputSize
+                for (px in pixels) inputBuffer.putFloat(((px shr 16) and 0xFF) / 255f) // R
+                for (px in pixels) inputBuffer.putFloat(((px shr 8)  and 0xFF) / 255f) // G
+                for (px in pixels) inputBuffer.putFloat((px           and 0xFF) / 255f) // B
+            } else {
+                // NHWC format: RGB RGB RGB...
+                for (px in pixels) {
+                    inputBuffer.putFloat(((px shr 16) and 0xFF) / 255f)
+                    inputBuffer.putFloat(((px shr 8)  and 0xFF) / 255f)
+                    inputBuffer.putFloat((px           and 0xFF) / 255f)
+                }
             }
             inputBuffer.rewind()
             letterboxed.recycle()
 
-            val numFields  = 12
-            val numAnchors = 14196
+            val outShape = interp.getOutputTensor(0).shape()
+            Log.d(TAG, "Model output shape: ${outShape.toList()}")
+
+            // Detect whether model outputs [1, max_det, 7] (postprocessed) or [1, 12, numAnchors] (raw)
+            val isPostprocessed = (outShape.size == 3 && outShape[2] == 7)
+            val totalOutputFloats = outShape.fold(1) { acc, dim -> acc * dim }
+
             val outputBuffer = ByteBuffer
-                .allocateDirect(1 * numFields * numAnchors * 4)
+                .allocateDirect(totalOutputFloats * 4)
                 .apply { order(ByteOrder.nativeOrder()) }
 
             synchronized(this) {
@@ -168,82 +185,125 @@ class ObjectDetectorHelper(private val context: Context) {
             }
             outputBuffer.rewind()
 
-            val data = FloatArray(numFields * numAnchors) { outputBuffer.float }
+            val data = FloatArray(totalOutputFloats) { outputBuffer.float }
 
             // Active image area after letterbox padding
             val activeW = inputSize - 2 * padX
             val activeH = inputSize - 2 * padY
 
-            // ── DIAGNOSTIC (remove after threshold is tuned) ──────────────────
-            var maxConf = 0f
-            var maxConfClass = 0
-            var maxAngle = -Float.MAX_VALUE
-            var minAngle = Float.MAX_VALUE
-            for (a in 0 until numAnchors) {
-                val ang = data[11 * numAnchors + a]
-                if (ang > maxAngle) maxAngle = ang
-                if (ang < minAngle) minAngle = ang
-                for (c in 0 until NUM_CLASSES) {
-                    val score = sigmoid(data[(4 + c) * numAnchors + a])
-                    if (score > maxConf) { maxConf = score; maxConfClass = c }
-                }
-            }
-            Log.d(TAG, "Angle range: min=$minAngle max=$maxAngle")
-            Log.d(TAG, "Best score: $maxConf class=${labels.getOrElse(maxConfClass) { "?" }}")
-            // ── END DIAGNOSTIC ────────────────────────────────────────────────
+            if (isPostprocessed) {
+                // Ultralytics OBB TFLite Postprocessed format: [1, numDets (e.g. 300), 7]
+                // 7 values per detection: [cx, cy, w, h, score, class_id, angle]
+                val numDets = outShape[1]
+                for (i in 0 until numDets) {
+                    val base = i * 7
+                    val score = data[base + 4]
+                    val maxClass = data[base + 5].toInt().coerceIn(0, NUM_CLASSES - 1)
 
-            for (a in 0 until numAnchors) {
-                // CORRECT field layout for YOLOv11 OBB:
-                // 0=cx, 1=cy, 2=w, 3=h, 4=cls0, 5=cls1, ... 10=cls6, 11=angle
-                var maxScore = 0f
-                var maxClass = 0
-                for (c in 0 until NUM_CLASSES) {
-                    val score = sigmoid(data[(4 + c) * numAnchors + a])
-                    if (score > maxScore) {
-                        maxScore = score
-                        maxClass = c
+                    val threshold = if (labels.getOrNull(maxClass) == "Rhizoctonia") {
+                        RHIZOCTONIA_CONFIDENCE_THRESHOLD
+                    } else {
+                        CONFIDENCE_THRESHOLD
                     }
+                    if (score < threshold) continue
+
+                    val cxRaw = data[base + 0]
+                    val cyRaw = data[base + 1]
+                    val wRaw  = data[base + 2]
+                    val hRaw  = data[base + 3]
+                    val angle = data[base + 6]
+
+                    // Convert coordinates: handle both normalized [0..1] and pixel space [0..inputSize]
+                    val isNormalized = (cxRaw <= 1.05f && cyRaw <= 1.05f && wRaw <= 1.05f && hRaw <= 1.05f)
+                    val cxPx = if (isNormalized) cxRaw * inputSize else cxRaw
+                    val cyPx = if (isNormalized) cyRaw * inputSize else cyRaw
+                    val wPx  = if (isNormalized) wRaw  * inputSize else wRaw
+                    val hPx  = if (isNormalized) hRaw  * inputSize else hRaw
+
+                    // Remove letterbox padding → active image space
+                    val cxActive = cxPx - padX
+                    val cyActive = cyPx - padY
+
+                    // Normalize to 0-1 in original image space
+                    val cx = cxActive / activeW
+                    val cy = cyActive / activeH
+                    val w  = wPx / activeW
+                    val h  = hPx / activeH
+
+                    if (w < MIN_BOX_SIZE || h < MIN_BOX_SIZE) continue
+
+                    val corners = getRotatedCorners(cx, cy, w, h, angle)
+                    val aabb = cornersToAABB(corners)
+
+                    if ((aabb.right  - aabb.left) < MIN_BOX_SIZE ||
+                        (aabb.bottom - aabb.top)  < MIN_BOX_SIZE) continue
+
+                    results.add(DetectionResult(
+                        boundingBox = aabb,
+                        corners     = corners,
+                        angle       = angle,
+                        label       = labels.getOrElse(maxClass) { "Class $maxClass" },
+                        confidence  = score
+                    ))
                 }
+            } else {
+                // Raw YOLO OBB format: [1, 12, numAnchors]
+                val numFields  = 12
+                val numAnchors = totalOutputFloats / numFields
 
-                if (maxScore < CONFIDENCE_THRESHOLD) continue
+                for (a in 0 until numAnchors) {
+                    var maxScore = 0f
+                    var maxClass = 0
+                    for (c in 0 until NUM_CLASSES) {
+                        val score = sigmoid(data[(5 + c) * numAnchors + a])
+                        if (score > maxScore) {
+                            maxScore = score
+                            maxClass = c
+                        }
+                    }
 
-                val cxNorm = data[0 * numAnchors + a]
-                val cyNorm = data[1 * numAnchors + a]
-                val wNorm  = data[2 * numAnchors + a]
-                val hNorm  = data[3 * numAnchors + a]
-                val angle  = data[11 * numAnchors + a]  // real angle, last field
+                    val threshold = if (labels.getOrNull(maxClass) == "Rhizoctonia") {
+                        RHIZOCTONIA_CONFIDENCE_THRESHOLD
+                    } else {
+                        CONFIDENCE_THRESHOLD
+                    }
+                    if (maxScore < threshold) continue
 
-                // Convert to pixel space inside 832×832
-                val cxPx = cxNorm * inputSize
-                val cyPx = cyNorm * inputSize
-                val wPx  = wNorm  * inputSize
-                val hPx  = hNorm  * inputSize
+                    val cxNorm = data[0 * numAnchors + a]
+                    val cyNorm = data[1 * numAnchors + a]
+                    val wNorm  = data[2 * numAnchors + a]
+                    val hNorm  = data[3 * numAnchors + a]
+                    val angle  = data[4 * numAnchors + a]
 
-                // Remove letterbox padding → active image space
-                val cxActive = cxPx - padX
-                val cyActive = cyPx - padY
+                    val cxPx = cxNorm * inputSize
+                    val cyPx = cyNorm * inputSize
+                    val wPx  = wNorm  * inputSize
+                    val hPx  = hNorm  * inputSize
 
-                // Normalize to 0-1 in original image space
-                val cx = cxActive / activeW
-                val cy = cyActive / activeH
-                val w  = wPx / activeW
-                val h  = hPx / activeH
+                    val cxActive = cxPx - padX
+                    val cyActive = cyPx - padY
 
-                if (w < MIN_BOX_SIZE || h < MIN_BOX_SIZE) continue
+                    val cx = cxActive / activeW
+                    val cy = cyActive / activeH
+                    val w  = wPx / activeW
+                    val h  = hPx / activeH
 
-                val corners = getRotatedCorners(cx, cy, w, h, angle)
-                val aabb = cornersToAABB(corners)
+                    if (w < MIN_BOX_SIZE || h < MIN_BOX_SIZE) continue
 
-                if ((aabb.right  - aabb.left) < MIN_BOX_SIZE ||
-                    (aabb.bottom - aabb.top)  < MIN_BOX_SIZE) continue
+                    val corners = getRotatedCorners(cx, cy, w, h, angle)
+                    val aabb = cornersToAABB(corners)
 
-                results.add(DetectionResult(
-                    boundingBox = aabb,
-                    corners     = corners,
-                    angle       = angle,
-                    label       = labels.getOrElse(maxClass) { "Class $maxClass" },
-                    confidence  = maxScore
-                ))
+                    if ((aabb.right  - aabb.left) < MIN_BOX_SIZE ||
+                        (aabb.bottom - aabb.top)  < MIN_BOX_SIZE) continue
+
+                    results.add(DetectionResult(
+                        boundingBox = aabb,
+                        corners     = corners,
+                        angle       = angle,
+                        label       = labels.getOrElse(maxClass) { "Class $maxClass" },
+                        confidence  = maxScore
+                    ))
+                }
             }
 
             val nmsResults = applyNMS(results)

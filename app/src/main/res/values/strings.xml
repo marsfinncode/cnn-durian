@@ -1,47 +1,134 @@
 <resources>
     <string name="app_name">You Only Eat Durian Once</string>
-    <string name="start_detecting">สแกนโรคใบทุเรียน</string>
-    <string name="camera_permission_denied">Camera permission is required to use this feature.</string>
-    
-    <string name="btn_disease_info">ฐานข้อมูลโรคใบทุเรียน</string>
-    <string name="title_disease_info">ข้อมูลโรคใบทุเรียน (7 Classes)</string>
-    <string name="action_settings">Settings</string>
+    <string name="splash_subtitle">สแกนโรคใบทุเรียน</string>
+    <string name="app_desc">แอปพลิเคชันปัญญาประดิษฐ์สแกนโรคใบทุเรียน&#160;เพื่อช่วยเหลือเกษตรกรในการตัดสินใจดูแลสวนอย่างแม่นยำ</string>
+    <string name="camera_permission_denied">จำเป็นต้องได้รับอนุญาตการใช้กล้องเพื่อใช้งานฟีเจอร์นี้</string>
+    <string name="action_settings">การตั้งค่า</string>
     <string name="title_settings">ตั้งค่า</string>
-    <string name="font_size">ขนาดฟอนต์</string>
-    <string name="app_desc">แอปพลิเคชันปัญญาประดิษฐ์สแกนโรคใบทุเรียน\nเพื่อช่วยเหลือเกษตรกรในการตัดสินใจดูแลสวนอย่างแม่นยำ</string>
+    <string name="btn_back">กลับ</string>
 
+    <!-- Main Navigation Actions -->
+    <string name="start_detecting">สแกนโรคใบทุเรียน</string>
+    <string name="action_scan_subtitle">ถ่ายภาพเพื่อวิเคราะห์โรคด้วย AI</string>
+    <string name="scan_whole_tree">สแกนทั้งต้น (วิเคราะห์สถิติ)</string>
+    <string name="action_tree_scan_subtitle">สแกนรอบต้นเพื่อดูสถิติโรค</string>
+    <string name="action_analyze_image_title">วิเคราะห์จากรูปภาพ</string>
+    <string name="action_analyze_image_subtitle">เลือกรูปภาพใบจากแกลลอรี</string>
+    <string name="btn_disease_info">ฐานข้อมูลโรคใบทุเรียน</string>
+    <string name="action_disease_info_subtitle">ข้อมูลโรค 7 ประเภท และการรักษา</string>
+    <string name="title_disease_info">ข้อมูลโรคใบทุเรียน (7 Classes)</string>
+    <string name="disease_list_subtitle">เลือกโรคเพื่อดูรายละเอียด</string>
+
+    <!-- Severity Badges -->
+    <string name="badge_critical">รุนแรง</string>
+    <string name="badge_warning">ระวัง</string>
+    <string name="badge_watch">เฝ้าดู</string>
+    <string name="badge_healthy">ปกติ</string>
+    <string name="badge_other">อื่นๆ</string>
+
+    <!-- Short Disease Display Labels (Camera & Charts) -->
+    <string name="label_short_phytophthora">รากเน่าโคนเน่า</string>
+    <string name="label_short_anthracnose">แอนแทรคโนส</string>
+    <string name="label_short_rhizoctonia">ใบติด</string>
+    <string name="label_short_phomopsis">ใบจุดโฟมอปซิส</string>
+    <string name="label_short_algal_spot">จุดสาหร่าย</string>
+    <string name="label_short_healthy">ใบปกติ</string>
+    <string name="label_short_other">อื่นๆ</string>
+
+    <!-- Disease Subtitles -->
+    <string name="sub_phytophthora">เชื้อรา Phytophthora palmivora</string>
+    <string name="sub_anthracnose">เชื้อราตระกูล Colletotrichum</string>
+    <string name="sub_rhizoctonia">เชื้อรา Rhizoctonia solani</string>
+    <string name="sub_phomopsis">เชื้อรา Phomopsis spp.</string>
+    <string name="sub_algal_spot">สาหร่าย Cephaleuros virescens</string>
+    <string name="sub_healthy">ใบแข็งแรง สมบูรณ์</string>
+    <string name="sub_others">อาการที่ไม่ตรงกับ 5 โรคหลัก</string>
+    <string name="dept_agriculture">กรมวิชาการเกษตร</string>
+    <string name="image_placeholder">📷  เตรียมใส่รูปภาพ</string>
+    <string name="disease_sample_image">ภาพตัวอย่างของโรค</string>
+
+    <!-- Disease Detailed Guides -->
     <string name="disease_phytophthora_title">รากเน่าโคนเน่า (Phytophthora)</string>
-    <string name="disease_phytophthora_desc"><![CDATA[<b>สาเหตุ:</b> เชื้อรา Phytophthora palmivora<br/><br/><b>ลักษณะอาการ:</b><br/>• <b>ลำต้นและกิ่ง:</b> ใบเหลืองซีด มีคราบน้ำยางสีน้ำตาลแดงไหลจากแผล หากถากเปลือกจะพบเนื้อเยื่อสีน้ำตาลเข้ม หากลามรอบต้น ต้นจะตาย<br/>• <b>ราก:</b> ใบปลายกิ่งเหี่ยว รากฝอยเน่าเปื่อยยุ่ยสีน้ำตาล<br/>• <b>ใบ:</b> แผลฉ่ำน้ำสีน้ำตาลอ่อน เปลี่ยนเป็นดำตายนึ่งคล้ายโดนน้ำร้อนลวก<br/><br/><b>การป้องกันและกำจัด (อ้างอิง: <a href="https://www.doa.go.th/share/attachment.php?aid=2976">กรมวิชาการเกษตร</a>):</b><br/>1. <b>การจัดการดินและน้ำ:</b> ระบายน้ำไม่ให้ท่วมขัง ปรับ pH ดินให้เป็น 6.5 ด้วยปูนขาว<br/>2. <b>วิธีกล:</b> ถากเปลือกส่วนที่เป็นโรคออก ทาแผลด้วย ฟอสอีทิล-อะลูมิเนียม หรือ เมทาแลกซิล ทาซ้ำทุก 7 วันจนแผลแห้ง<br/>3. <b>การใช้สารเคมี:</b> หากรุนแรง ฉีด ฟอสโฟนิก แอซิด เข้าลำต้น (อัตรา 20 มล./ต้น)<br/>4. <b>ชีวภัณฑ์:</b> ใช้เชื้อราไตรโคเดอร์มาใส่ในดินเพื่อยับยั้งเชื้อสาเหตุ]]></string>
+    <string name="disease_phytophthora_desc"><![CDATA[<b>สาเหตุ:</b> เชื้อรา Phytophthora palmivora<br/><br/><b>ลักษณะอาการ:</b><br/>• <b>ลำต้นและกิ่ง:</b> ใบเหลืองซีด มีคราบน้ำยางสีน้ำตาลแดงไหลจากแผล หากถากเปลือกจะพบเนื้อเยื่อสีน้ำตาลเข้ม หากลามรอบต้น ต้นจะตาย<br/>• <b>ราก:</b> ใบปลายกิ่งเหี่ยว รากฝอยเน่าเปื่อยยุ่ยสีน้ำตาล<br/>• <b>ใบ:</b> แผลฉ่ำน้ำสีน้ำตาลอ่อน เปลี่ยนเป็นดำตายนึ่งคล้ายโดนน้ำร้อนลวก<br/><br/><b>การป้องกันและกำจัด:</b><br/>1. <b>การจัดการดินและน้ำ:</b> ระบายน้ำไม่ให้ท่วมขัง ปรับ pH ดินให้เป็น 6.0–6.5 ด้วยปูนขาวหรือโดโลไมท์<br/>2. <b>วิธีกล:</b> ถากเปลือกส่วนที่เป็นโรคออก ทาแผลด้วย ฟอสอีทิล-อะลูมิเนียม 80% WP (80–100 กรัม/น้ำ 1 ลิตร) หรือ เมทาแลกซิล 25% WP (50–60 กรัม/น้ำ 1 ลิตร) ทาซ้ำทุก 7 วันจนแผลแห้ง<br/>3. <b>การใช้สารเคมี:</b> พ่นหรือราดโคนด้วย ฟอสอีทิล-อะลูมิเนียม หรือ เมทาแลกซิล อัตรา 30–50 กรัม/น้ำ 20 ลิตร หากรุนแรงฉีด ฟอสโฟนิก แอซิด 40% SL เข้าลำต้น (อัตรา 20 มล./ต้น)<br/>4. <b>ชีวภัณฑ์:</b> ใช้เชื้อราไตรโคเดอร์มาผสมปุ๋ยหมักหว่านรอบทรงพุ่ม 3–5 กก./ต้น]]></string>
 
     <string name="disease_anthracnose_title">แอนแทรคโนส (Anthracnose)</string>
-    <string name="disease_anthracnose_desc"><![CDATA[<b>สาเหตุ:</b> เชื้อรากลุ่ม Colletotrichum spp.<br/><br/><b>ลักษณะอาการ:</b><br/>• <b>ใบ:</b> แผลสีน้ำตาลแดงขอบชัดเจน ขยายเป็นวงซ้อนกันกระจายทั่วใบ ทำให้ใบแห้งและร่วง<br/>• <b>ดอก/ผล:</b> ดอกเน่าดำร่วงหล่น ผลมีจุดน้ำตาลเล็กตามหนาม และเน่าเมื่อสุก มักระบาดรุนแรงช่วงชื้นและร้อน<br/><br/><b>การป้องกันและกำจัด (อ้างอิง: <a href="https://esc.doae.go.th/wp-content/uploads/2024/01/%E0%B9%82%E0%B8%A3%E0%B8%84%E0%B8%97%E0%B8%B8%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%81%E0%B8%B3%E0%B8%88%E0%B8%B1%E0%B8%94.pdf">กรมส่งเสริมการเกษตร</a>):</b><br/>1. <b>การจัดการทรงพุ่ม:</b> ตัดแต่งกิ่งให้โปร่ง อากาศถ่ายเทสะดวก ตัดกิ่งที่เป็นโรคไปเผาทำลาย<br/>2. <b>การใช้สารเคมี:</b> เมื่อพบเริ่มระบาด พ่นสาร โพรคลอราซ, อะซอกซี่สโตรบิน, หรือ ไพราโคลสโตรบิน พ่นทั่วทรงพุ่มทุก 5-7 วัน (สลับกลุ่มยาเพื่อป้องกันการดื้อยา)<br/>3. <b>ชีวภัณฑ์:</b> พ่นเชื้อราไตรโคเดอร์มา หรือ บาซิลลัส ซับทิลิส (BS)]]></string>
+    <string name="disease_anthracnose_desc" formatted="false"><![CDATA[<b>สาเหตุ:</b> เชื้อรากลุ่ม Colletotrichum gloeosporioides<br/><br/><b>ลักษณะอาการ:</b><br/>• <b>ใบ:</b> แผลสีน้ำตาลแดงขอบชัดเจน ขยายเป็นวงซ้อนกันกระจายทั่วใบ ทำให้ใบแห้งและร่วง<br/>• <b>ดอก/ผล:</b> ดอกเน่าดำร่วงหล่น ผลมีจุดน้ำตาลเล็กตามหนาม และเน่าเมื่อสุก มักระบาดรุนแรงช่วงชื้นและร้อน<br/><br/><b>การป้องกันและกำจัด:</b><br/>1. <b>การจัดการทรงพุ่ม:</b> ตัดแต่งกิ่งให้โปร่ง อากาศถ่ายเทสะดวก ตัดกิ่งและใบที่เป็นโรคไปเผาทำลายนอกแปลง<br/>2. <b>การใช้สารเคมี:</b> เมื่อพบเริ่มระบาด พ่นสาร โพรคลอราซ (20–30 มล./น้ำ 20 ลิตร), อะซอกซีสโตรบิน (10–20 มล./น้ำ 20 ลิตร), หรือ แมนโคเซบ (40–50 กรัม/น้ำ 20 ลิตร) พ่นทั่วทรงพุ่มทุก 5–7 วัน<br/>3. <b>ชีวภัณฑ์:</b> พ่นเชื้อราไตรโคเดอร์มา หรือ บาซิลลัส ซับทิลิส (BS)]]></string>
 
     <string name="disease_rhizoctonia_title">ใบติด (Rhizoctonia)</string>
-    <string name="disease_rhizoctonia_desc"><![CDATA[<b>สาเหตุ:</b> เชื้อรา Rhizoctonia solani (ระบาดมากช่วงหน้าฝน)<br/><br/><b>ลักษณะอาการ:</b><br/>เริ่มจากแผลซีดจางคล้ายโดนน้ำร้อนลวก เปลี่ยนเป็นสีน้ำตาล หากชื้นจัดจะพบ "ใยราสีขาวคล้ายใยแมงมุม" ยึดใบให้ติดกันเป็นกระจุก ใบไหม้และแห้งติดกิ่ง หากรุนแรงจะเหลือแต่กิ่งโกร๋น<br/><br/><b>การป้องกันและกำจัด (อ้างอิง: <a href="https://esc.doae.go.th/wp-content/uploads/2024/01/%E0%B9%82%E0%B8%A3%E0%B8%84%E0%B8%97%E0%B8%B8%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%81%E0%B8%B3%E0%B8%88%E0%B8%B1%E0%B8%94.pdf">กรมส่งเสริมการเกษตร</a>):</b><br/>1. <b>การตัดแต่ง:</b> สำคัญมากที่สุด ต้องตัดแต่งกิ่งให้โปร่ง แสงแดดส่องถึง เก็บใบที่ร่วงไปเผาทำลายนอกแปลง<br/>2. <b>การใส่ปุ๋ย:</b> ช่วงระบาดงดใส่ปุ๋ยไนโตรเจนสูง เพราะจะกระตุ้นการแตกใบอ่อน<br/>3. <b>การใช้สารเคมี:</b> พ่นสารกลุ่มคอปเปอร์ (เช่น คอปเปอร์ไฮดรอกไซด์, คอปเปอร์ออกซีคลอไรด์) หรือ เฮกซะโคนาโซล ทุก 7 วัน<br/>4. <b>ชีวภัณฑ์:</b> ใช้ไตรโคเดอร์มาก่อนเข้าฤดูฝนล่วงหน้า 1-2 เดือน]]></string>
+    <string name="disease_rhizoctonia_desc" formatted="false"><![CDATA[<b>สาเหตุ:</b> เชื้อรา Rhizoctonia solani (ระบาดมากช่วงหน้าฝน)<br/><br/><b>ลักษณะอาการ:</b><br/>เริ่มจากแผลซีดจางคล้ายโดนน้ำร้อนลวก เปลี่ยนเป็นสีน้ำตาล หากชื้นจัดจะพบ "ใยราสีขาวคล้ายใยแมงมุม" ยึดใบให้ติดกันเป็นกระจุก ใบไหม้และแห้งติดกิ่ง หากรุนแรงจะเหลือแต่กิ่งโกร๋น<br/><br/><b>การป้องกันและกำจัด:</b><br/>1. <b>การตัดแต่ง:</b> สำคัญมากที่สุด ต้องตัดแต่งกิ่งให้โปร่ง แสงแดดส่องถึง เก็บใบที่เป็นโรคและใบที่ร่วงไปเผาทำลายนอกแปลงทันที<br/>2. <b>การใส่ปุ๋ย:</b> ช่วงระบาดงดใส่ปุ๋ยไนโตรเจนสูง เพราะจะกระตุ้นการแตกใบอ่อน<br/>3. <b>การใช้สารเคมี:</b> พ่น เฮกซะโคนาโซล (20–30 มล./น้ำ 20 ลิตร) หรือ คอปเปอร์ออกซีคลอไรด์ (30–50 กรัม/น้ำ 20 ลิตร) ทุก 7 วัน<br/>4. <b>ชีวภัณฑ์:</b> ใช้ไตรโคเดอร์มาก่อนเข้าฤดูฝนล่วงหน้า 1–2 เดือน]]></string>
 
     <string name="disease_phomopsis_title">ใบจุดโฟมอปซิส (Phomopsis)</string>
-    <string name="disease_phomopsis_desc"><![CDATA[<b>สาเหตุ:</b> เชื้อรา Phomopsis spp.<br/><br/><b>ลักษณะอาการ:</b><br/>เกิดจุดแผลตายขนาดเล็กสีน้ำตาลเข้ม มีวงสีเหลืองล้อมรอบ (Yellow halo) ตรงกลางแผลมักเปลี่ยนเป็นสีขาวอมเทา และมีจุดเม็ดเล็กๆ สีดำ (พิคนิเดียม) กระจายอยู่ตรงกลาง มักเข้าทำลายแบบแฝงและแสดงอาการเมื่อต้นอ่อนแอ<br/><br/><b>การป้องกันและกำจัด (อ้างอิง: <a href="https://esc.doae.go.th/wp-content/uploads/2024/01/%E0%B9%82%E0%B8%A3%E0%B8%84%E0%B8%97%E0%B8%B8%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%81%E0%B8%B3%E0%B8%88%E0%B8%B1%E0%B8%94.pdf">กรมส่งเสริมการเกษตร</a>):</b><br/>1. <b>ทำความสะอาดสวน:</b> เก็บกวาดใบที่เป็นโรคไปเผาทำลาย<br/>2. <b>บำรุงต้น:</b> ให้น้ำและปุ๋ยพอเพียง อย่าให้ต้นอ่อนแอ<br/>3. <b>การใช้สารเคมี:</b> พ่นสารกลุ่มดูดซึม เช่น เฮกซาโคนาโซล หรือ ไดฟิโนโคนาโซล ผสมกับสารสัมผัส เช่น แมนโคเซบ เพื่อเพิ่มประสิทธิภาพ]]></string>
+    <string name="disease_phomopsis_desc" formatted="false"><![CDATA[<b>สาเหตุ:</b> เชื้อรา Phomopsis spp.<br/><br/><b>ลักษณะอาการ:</b><br/>เกิดจุดแผลตายขนาดเล็กสีน้ำตาลเข้ม มีวงสีเหลืองล้อมรอบ (Yellow halo) ตรงกลางแผลมักเปลี่ยนเป็นสีขาวอมเทา และมีจุดเม็ดเล็กๆ สีดำ (พิคนิเดียม) กระจายอยู่ตรงกลาง มักเข้าทำลายแบบแฝงและแสดงอาการเมื่อต้นอ่อนแอ<br/><br/><b>การป้องกันและกำจัด:</b><br/>1. <b>ทำความสะอาดสวน:</b> เก็บกวาดใบที่เป็นโรคไปเผาทำลายนอกแปลง<br/>2. <b>บำรุงต้น:</b> ให้น้ำและธาตุอาหารพอเพียง อย่าให้ต้นขาดน้ำหรืออ่อนแอ<br/>3. <b>การใช้สารเคมี:</b> พ่นสารดูดซึม เช่น เฮกซะโคนาโซล (20–30 มล./น้ำ 20 ลิตร) หรือ ไดฟีโนโคนาโซล (10–15 มล./น้ำ 20 ลิตร) สลับกับ แมนโคเซบ (40–50 กรัม/น้ำ 20 ลิตร)]]></string>
 
     <string name="disease_algal_spot_title">จุดสาหร่าย (Algal Spot)</string>
-    <string name="disease_algal_spot_desc"><![CDATA[<b>สาเหตุ:</b> สาหร่าย Cephaleuros virescens<br/><br/><b>ลักษณะอาการ:</b><br/>เริ่มแรกเป็นจุดนูนเล็กๆ สีเขียวปนเทา เมื่อสาหร่ายโตเต็มที่จะเปลี่ยนเป็นสีน้ำตาลแดงหรือสีสนิมเหล็ก ลักษณะฟูเป็นขุยคล้ายกำมะหยี่ มักเกิดตามใบและกิ่ง ทำให้ใบซีดเหลืองร่วง หรือกิ่งแห้งทรุดโทรม ระบาดหนักในสวนที่ทึบและชื้น<br/><br/><b>การป้องกันและกำจัด (อ้างอิง: <a href="https://esc.doae.go.th/wp-content/uploads/2024/01/%E0%B9%82%E0%B8%A3%E0%B8%84%E0%B8%97%E0%B8%B8%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%81%E0%B8%B3%E0%B8%88%E0%B8%B1%E0%B8%94.pdf">กรมส่งเสริมการเกษตร</a>):</b><br/>1. <b>จัดการทรงพุ่ม:</b> ตัดแต่งให้แสงแดดส่องถึงภายในทรงพุ่มเพื่อลดความชื้น<br/>2. <b>การใช้สารเคมี:</b> พ่นสารกลุ่มคอปเปอร์ (คอปเปอร์ไฮดรอกไซด์, คอปเปอร์ออกซีคลอไรด์) ให้ทั่วบริเวณที่เป็นโรคและรอบทรงพุ่ม ผสมสารจับใบ พ่นซ้ำทุก 7-10 วัน]]></string>
+    <string name="disease_algal_spot_desc" formatted="false"><![CDATA[<b>สาเหตุ:</b> สาหร่าย Cephaleuros virescens<br/><br/><b>ลักษณะอาการ:</b><br/>เริ่มแรกเป็นจุดนูนเล็กๆ สีเขียวปนเทา เมื่อสาหร่ายโตเต็มที่จะเปลี่ยนเป็นสีน้ำตาลแดงหรือสีสนิมเหล็ก ลักษณะฟูเป็นขุยคล้ายกำมะหยี่ มักเกิดตามใบและกิ่ง ทำให้ใบซีดเหลืองร่วง หรือกิ่งแห้งทรุดโทรม ระบาดหนักในสวนที่ทึบและชื้น<br/><br/><b>การป้องกันและกำจัด:</b><br/>1. <b>จัดการทรงพุ่ม:</b> ตัดแต่งกิ่งให้โปร่งเพื่อให้แสงแดดส่องถึงภายในทรงพุ่ม ลดความชื้นสะสม<br/>2. <b>การใช้สารเคมี:</b> พ่นสารกลุ่มคอปเปอร์ เช่น คอปเปอร์ออกซีคลอไรด์ (30–50 กรัม/น้ำ 20 ลิตร) หรือ คอปเปอร์ไฮดรอกไซด์ (20–30 กรัม/น้ำ 20 ลิตร) ผสมสารจับใบ พ่นซ้ำทุก 7–10 วัน]]></string>
 
     <string name="disease_healthy_title">ใบปกติ (Healthy)</string>
     <string name="disease_healthy_desc"><![CDATA[<b>ลักษณะอาการ:</b><br/>ใบมีสีเขียวสม่ำเสมอ ผิวใบมันเงา แข็งแรง ไม่มีรอยจุด รอยไหม้ หรือร่องรอยการทำลายของเชื้อราและแมลง<br/><br/><b>การจัดการ:</b><br/>ดูแลให้น้ำและธาตุอาหารอย่างเหมาะสมตามระยะการเจริญเติบโต และหมั่นสำรวจแปลงอย่างสม่ำเสมอเพื่อเฝ้าระวังโรคตั้งแต่เนิ่นๆ]]></string>
 
     <string name="disease_others_title">อื่นๆ (Others)</string>
     <string name="disease_others_desc"><![CDATA[<b>ลักษณะอาการ:</b><br/>ความผิดปกติอื่นๆ ที่ไม่ได้เกิดจาก 5 โรคหลัก อาจเป็นรอยกัดกินของแมลงศัตรูพืช อาการใบไหม้จากแสงแดดจัด อาการขาดธาตุอาหารรอง (เช่น ใบเหลืองเส้นใบเขียว) หรือสภาพดินฟ้าอากาศไม่เหมาะสม<br/><br/><b>การจัดการ:</b><br/>หากพบอาการที่ผิดแปลกไปจากที่ระบุไว้ ควรตัดตัวอย่างใบไปปรึกษานักวิชาการเกษตร สำนักงานเกษตรอำเภอ หรือร้านเคมีเกษตรที่มีความน่าเชื่อถือ เพื่อทำการวินิจฉัยและรักษาให้ตรงจุด]]></string>
-    <!-- Tree Scan Feature Strings -->
-    <string name="scan_whole_tree">สแกนทั้งต้น (วิเคราะห์สถิติ)</string>
-    <string name="storage_manager">จัดการพื้นที่จัดเก็บ</string>
+
+    <!-- Image Analysis -->
+    <string name="title_image_analysis">ผลการวิเคราะห์ภาพ</string>
+    <string name="loading_ai_analysis">กำลังใช้ AI วิเคราะห์ความน่าจะเป็น...</string>
+    <string name="results_header_detected">โรคที่อาจเป็นไปได้</string>
+    <string name="results_header_not_found">ไม่พบร่องรอยของโรคที่ชัดเจน</string>
+    <string name="results_empty_desc">AI ไม่สามารถวิเคราะห์โรคได้อย่างมั่นใจจากรูปภาพนี้ กรุณาลองถ่ายภาพใหม่ให้ชัดเจนขึ้น หรือถ่ายใกล้บริเวณที่มีอาการ</string>
+    <string name="treatment_advice_header">ข้อมูลและคำแนะนำการรักษา</string>
+    <string name="no_treatment_advice">ไม่มีคำแนะนำการรักษาเพิ่มเติมสำหรับโรคนี้</string>
+    <string name="disclaimer_ai_text">ผลลัพธ์นี้เป็นการทำนายของโมเดล AI เบื้องต้นเท่านั้น อาจมีความคลาดเคลื่อนได้ กรุณาพิจารณาร่วมกับอาการจริงของต้นทุเรียน หรือปรึกษาผู้เชี่ยวชาญด้านการเกษตรเพื่อความแม่นยำ</string>
+    <string name="image_not_found">ไม่พบรูปภาพ</string>
+    <string name="error_loading_image">เกิดข้อผิดพลาดในการโหลดรูปภาพ</string>
+
+    <!-- Camera & Detection -->
+    <string name="no_diseases_detected">ไม่พบร่องรอยโรค</string>
+    <string name="detected_prefix">ตรวจพบ: %s</string>
+
+    <!-- Tree Scan Feature -->
+    <string name="tree_scan_title">สแกนโรคทั้งต้น</string>
     <string name="start_scan">เริ่มสแกน</string>
     <string name="stop_scan">หยุดสแกนและดูสถิติ</string>
     <string name="scanning">กำลังสแกน...</string>
+    <string name="scan_dialog_title">ตั้งชื่อการสแกน</string>
+    <string name="scan_dialog_hint">เช่น ต้นทุเรียนหลังบ้าน...</string>
+    <string name="btn_save">บันทึก</string>
+    <string name="btn_cancel">ยกเลิก</string>
+
+    <!-- Scan History & Results -->
+    <string name="title_scan_history">ประวัติการสแกน</string>
     <string name="scan_history">ประวัติการสแกน</string>
-    <string name="clear_data">ล้างข้อมูลทั้งหมด</string>
-    <string name="data_cleared">ล้างข้อมูลเรียบร้อยแล้ว</string>
-    <string name="storage_used">พื้นที่ที่ใช้ไป: %s</string>
-    <string name="tree_scan_title">สแกนโรคทั้งต้น</string>
+    <string name="storage_used">พื้นที่ที่ใช้: %s</string>
+    <string name="btn_clear_data">ล้างข้อมูล</string>
+    <string name="confirm_clear_title">ยืนยันการลบ</string>
+    <string name="confirm_clear_message">คุณต้องการลบประวัติการสแกนทั้งหมดใช่หรือไม่?</string>
+    <string name="btn_delete">ลบ</string>
     <string name="no_data">ไม่พบข้อมูลการสแกน</string>
+    <string name="no_scan_history_toast">ไม่มีประวัติการสแกน</string>
+    <string name="data_cleared">ล้างข้อมูลเรียบร้อยแล้ว</string>
+    <string name="chart_legend_diseases">โรคที่ตรวจพบ</string>
+    <string name="chart_combined_title">โรคที่ตรวจพบ (ประวัติรวม)</string>
+    <string name="file_size_format">ขนาดไฟล์: %d KB</string>
+
+    <!-- Settings & Language -->
+    <string name="language_setting">ภาษา / Language</string>
+    <string name="lang_system">ตามค่าเริ่มต้นของระบบ (System Default)</string>
+    <string name="lang_th">ภาษาไทย (Thai)</string>
+    <string name="lang_en">English</string>
+    <string name="font_size">ขนาดฟอนต์</string>
+    <string name="font_normal">ปกติ (Normal)</string>
+    <string name="font_large">ใหญ่ (Large)</string>
+    <string name="font_extra_large">ใหญ่มาก (Extra Large)</string>
+    <string name="preview_title">ตัวอย่างข้อความ</string>
+    <string name="preview_text">โรครากเน่าโคนเน่า เกิดจากเชื้อรา Phytophthora palmivora ใบเหลืองซีด มีคราบน้ำยางสีน้ำตาลแดงไหลจากแผล</string>
+    <string name="storage_manager_title">จัดการพื้นที่จัดเก็บ (ประวัติสแกน)</string>
+    <string name="cannot_open_browser">ไม่สามารถเปิดเบราว์เซอร์ได้</string>
+
+    <!-- Severity Estimation Labels -->
+    <string name="severity_healthy">ปกติ (Healthy)</string>
+    <string name="severity_mild">เริ่มต้น (Mild)</string>
+    <string name="severity_moderate">ปานกลาง (Moderate)</string>
+    <string name="severity_critical">รุนแรง (Critical)</string>
 
     <!-- About App Strings -->
     <string name="title_about_app">เกี่ยวกับแอปพลิเคชัน</string>
@@ -52,5 +139,5 @@
     <string name="github_repo_subtitle">GitHub Repository</string>
     <string name="copyright_text">Copyright © 2026 cateatmars.dev</string>
     <string name="license_text">Licensed under the Apache License, Version 2.0</string>
-    <string name="developer_credits">โรงเรียนมหิดลวิทยานุสรณ์</string>
+    <string name="developer_credits">มหาวิทยาลัยบูรพา และโรงเรียนมหิดลวิทยานุสรณ์</string>
 </resources>

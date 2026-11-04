@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - YOEDO (You Only Eat Durian Once)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #059669;
+            --primary-dark: #1B5E20;
+            --primary-light: #E8F5E9;
+            --accent: #00F59B;
+            --bg: #F8FAF8;
+            --surface: #FFFFFF;
+            --text-primary: #0F241C;
+            --text-secondary: #4A5568;
+            --border: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header Banner with Agri Forest Green Theme */
+        .hero-header {
+            background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+            color: #FFFFFF;
+            padding: 48px 20px 40px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: #E2E8F0;
+            max-width: 600px;
+            margin: 0 auto 16px;
+        }
+
+        .effective-date {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Container */
+        .container {
+            max-width: 860px;
+            margin: -24px auto 60px;
+            padding: 0 16px;
+        }
+
+        /* Language Toggle Bar */
+        .lang-switch {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .lang-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+        }
+
+        /* Main Card */
+        .policy-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 36px 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .section-flag {
+            font-size: 24px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        h2, h3 {
+            color: var(--text-primary);
+            margin-top: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 17px;
+            color: var(--primary-dark);
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        ul {
+            margin: 0 0 18px 24px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        li strong {
+            color: var(--text-primary);
+        }
+
+        /* Callout Box */
+        .callout {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #1B5E20;
+        }
+
+        .callout strong {
+            color: #0F241C;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px 50px;
+            color: #718096;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .hero-title { font-size: 22px; }
+            .policy-card { padding: 24px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-header">
+        <div class="hero-badge">Official Policy Documentation</div>
+        <h1 class="hero-title">นโยบายความเป็นส่วนตัว / Privacy Policy</h1>
+        <p class="hero-subtitle">แอปพลิเคชัน YOEDO (You Only Eat Durian Once)</p>
+        <div class="effective-date">วันที่มีผลบังคับใช้ (Effective Date): 2 พฤศจิกายน 2569 / November 2, 2026</div>
+    </header>
+
+    <div class="container">
+
+        <div class="lang-switch">
+            <a href="#thai" class="lang-btn active">🇹🇭 ภาษาไทย (TH)</a>
+            <a href="#english" class="lang-btn">🇺🇸 English (EN)</a>
+        </div>
+
+        <!-- Thai Version -->
+        <article id="thai" class="policy-card">
+            <div class="section-header">
+                <span class="section-flag">🇹🇭</span>
+                <h2 class="section-title">นโยบายความเป็นส่วนตัว (ภาษาไทย)</h2>
+            </div>
+
+            <p>
+                ขอขอบคุณที่เลือกใช้งานแอปพลิเคชัน <strong>YOEDO (You Only Eat Durian Once)</strong> ("เรา" หรือ "แอปพลิเคชัน") เราตระหนักและให้ความสำคัญอย่างยิ่งต่อสิทธิในความเป็นส่วนตัวและการคุ้มครองข้อมูลส่วนบุคคลของผู้ใช้งาน ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) รวมถึงนโยบายข้อมูลผู้ใช้ของ Google Play (Google Play User Data Policy)
+            </p>
+            <p>
+                นโยบายความเป็นส่วนตัวฉบับนี้จัดทำขึ้นเพื่อชี้แจงแนวปฏิบัติเกี่ยวกับการเข้าถึง การใช้งาน และการคุ้มครองข้อมูลในการใช้งานแอปพลิเคชัน ดังมีรายละเอียดต่อไปนี้:
+            </p>
+
+            <div class="callout">
+                <strong>หลักการสำคัญ:</strong> แอปพลิเคชัน YOEDO ทำงานแบบประมวลผลบนเครื่อง (On-Device Local AI) โดยสมบูรณ์ <u>ไม่มีการเก็บรวบรวม บันทึก ส่งต่อ หรือเปิดเผยข้อมูลส่วนบุคคลหรือภาพถ่ายใด ๆ ของผู้ใช้งานสู่ภายนอก</u>
+            </div>
+
+            <h3>1. ข้อมูลที่เราเก็บรวบรวม (Data Collection)</h3>
+            <p>แอปพลิเคชัน YOEDO ถูกพัฒนาขึ้นภายใต้หลักการความเป็นส่วนตัวตั้งแต่การออกแบบ (Privacy by Design):</p>
+            <ul>
+                <li><strong>ไม่มีการเก็บรวบรวมข้อมูลส่วนบุคคล:</strong> เราไม่มีการเก็บ รวบรวม จัดเก็บ ถ่ายโอน หรือเปิดเผยข้อมูลที่สามารถระบุตัวตนของผู้ใช้งาน (Personally Identifiable Information: PII) เช่น ชื่อ, ที่อยู่, หมายเลขโทรศัพท์, บัญชีอีเมล หรือข้อมูลระบุตัวตนของอุปกรณ์ (Device Identifiers)</li>
+                <li><strong>ไม่มีการติดตามพฤติกรรมผู้ใช้:</strong> แอปพลิเคชันไม่มีระบบวิเคราะห์สถิติพฤติกรรมผู้ใช้ (Analytics SDKs), ไม่มีระบบระบุหรือติดตามตำแหน่งพิกัด (GPS/Location), และไม่มีการติดตั้งคุกกี้ (Cookies) หรือโค้ดโฆษณาจากบุคคลภายนอก</li>
+            </ul>
+
+            <h3>2. การขอสิทธิ์และการใช้งานกล้องถ่ายรูป (Camera Permission)</h3>
+            <p>เพื่อให้แอปพลิเคชันสามารถตรวจวินิจฉัยโรคใบทุเรียนได้ แอปพลิเคชันมีความจำเป็นต้องขอสิทธิ์เข้าถึงกล้องถ่ายรูปของอุปกรณ์ (<code>android.permission.CAMERA</code>):</p>
+            <ul>
+                <li><strong>วัตถุประสงค์การใช้งาน:</strong> เข้าถึงกล้องเพื่อตรวจจับภาพเฟรมวิดีโอแบบเรียลไทม์ หรือรับภาพถ่ายใบพืชเพื่อนำมาวิเคราะห์โรคด้วยโมเดลปัญญาประดิษฐ์</li>
+                <li><strong>การประมวลผลภายในเครื่อง (On-Device Local AI):</strong> ข้อมูลภาพทั้งหมดจะถูกส่งเข้าโมเดล LiteRT (TensorFlow Lite) เพื่อประมวลผลบนหน่วยประมวลผลของสมาร์ตโฟนของผู้ใช้งานโดยตรง</li>
+                <li><strong>ไม่มีการส่งออกหรืออัปโหลดข้อมูลภาพ:</strong> ภาพถ่าย วิดีโอ หรือสตรีมภาพจากกล้อง <strong>จะไม่ถูกบันทึก อัปโหลด หรือส่งไปยังเซิร์ฟเวอร์ภายนอก ระบบคลาวด์ หรือบุคคลที่สามใด ๆ ทั้งสิ้น</strong></li>
+                <li><strong>การบันทึกประวัติภายในเครื่อง:</strong> หากผู้ใช้งานเลือกบันทึกผลการสแกนหรือสถิติโรค ข้อมูลดังกล่าวจะถูกจัดเก็บไว้ในหน่วยความจำเฉพาะของแอปพลิเคชันบนอุปกรณ์ (Private SharedPreferences) ของผู้ใช้งานเองเท่านั้น และไม่มีการสำรองออกนอกอุปกรณ์</li>
+            </ul>
+
+            <h3>3. การเชื่อมต่อเครือข่ายอินเทอร์เน็ต (Internet Access)</h3>
+            <p>
+                แอปพลิเคชันมีสิทธิ์การเข้าถึงอินเทอร์เน็ต (<code>android.permission.INTERNET</code>) สำหรับกรณีที่ผู้ใช้งานเลือกแตะเปิดลิงก์ภายนอกผ่านเว็บเบราว์เซอร์ของระบบ เช่น การเปิดอ่านเอกสารวิชาการอ้างอิงจากกรมวิชาการเกษตร/กรมส่งเสริมการเกษตร หรือการเข้าสู่เว็บไซต์สถาบันการศึกษา (มหาวิทยาลัยบูรพา, โรงเรียนมหิดลวิทยานุสรณ์) โดยตัวแอปพลิเคชันไม่มีการส่งข้อมูลการใช้งานใด ๆ ผ่านอินเทอร์เน็ต
+            </p>
+
+            <h3>4. ความปลอดภัยของข้อมูล (Data Security)</h3>
+            <p>
+                เนื่องจากแอปพลิเคชันไม่มีการจัดเก็บหรือส่งผ่านข้อมูลส่วนบุคคลของผู้ใช้ไปยังเครือข่ายอินเทอร์เน็ต ข้อมูลการใช้งานทั้งหมดจึงได้รับการคุ้มครองภายใต้ระบบรักษาความปลอดภัยระดับ Sandbox ของระบบปฏิบัติการ Android บนอุปกรณ์ของผู้ใช้งานเอง
+            </p>
+
+            <h3>5. นโยบายคุ้มครองความเป็นส่วนตัวของเด็ก (Children's Privacy)</h3>
+            <p>
+                แอปพลิเคชันนี้ไม่ได้มุ่งเป้าไปยังเด็กที่มีอายุต่ำกว่า 13 ปี และไม่มีการเก็บรวบรวมข้อมูลส่วนบุคคลจากเด็ก หากท่านเป็นบิดามารดาหรือผู้ปกครองและพบว่าบุตรหลานได้ให้ข้อมูลแก่เรา โปรดติดต่อเราเพื่อดำเนินการตรวจสอบต่อไป
+            </p>
+
+            <h3>6. การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว (Changes to Privacy Policy)</h3>
+            <p>
+                เราอาจปรับปรุงหรือแก้ไขนโยบายความเป็นส่วนตัวนี้เป็นครั้งคราว เพื่อให้สอดคล้องกับการพัฒนาแอปพลิเคชันและข้อกำหนดทางกฎหมาย โดยการเปลี่ยนแปลงจะมีผลบังคับใช้ทันทีเมื่อเผยแพร่บนหน้านี้
+            </p>
+
+            <h3>7. ช่องทางการติดต่อ (Contact Us)</h3>
+            <p>หากท่านมีข้อสงสัย ข้อเสนอแนะ หรือข้อร้องเรียนเกี่ยวกับนโยบายความเป็นส่วนตัวนี้ สามารถติดต่อทีมผู้พัฒนาได้ที่:</p>
+            <ul>
+                <li><strong>อีเมล (Email):</strong> <a href="mailto:plabooworld@outlook.com">plabooworld@outlook.com</a></li>
+                <li><strong>โครงการโอเพนซอร์ส (GitHub):</strong> <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener">https://github.com/marsfinncode/cnn-durian</a></li>
+            </ul>
+        </article>
+
+        <!-- English Version -->
+        <article id="english" class="policy-card">
+            <div class="section-header">
+                <span class="section-flag">🇺🇸</span>
+                <h2 class="section-title">Privacy Policy (English)</h2>
+            </div>
+
+            <p>
+                Thank you for choosing <strong>YOEDO (You Only Eat Durian Once)</strong> ("we", "us", or "our"). We are dedicated to protecting your privacy and personal data in strict compliance with applicable data protection regulations, including the Personal Data Protection Act (PDPA) and Google Play User Data Policies.
+            </p>
+            <p>
+                This Privacy Policy outlines our standards and practices concerning data access, processing, and protection within the YOEDO application:
+            </p>
+
+            <div class="callout">
+                <strong>Key Principle:</strong> YOEDO operates entirely via local, on-device artificial intelligence inference. <u>We do not collect, store, transmit, or share any personal data or images to external servers or third parties.</u>
+            </div>
+
+            <h3>1. Information We Collect</h3>
+            <p>YOEDO is engineered following strict "Privacy by Design" architecture:</p>
+            <ul>
+                <li><strong>No Personal Data Collected:</strong> We do not collect, harvest, store, transmit, or disclose any Personally Identifiable Information (PII), such as full name, contact information, email address, physical address, or unique device identifiers.</li>
+                <li><strong>No Analytics or Tracking:</strong> The application does not incorporate third-party tracking frameworks, behavioral analytics SDKs, advertising networks, or geographic location (GPS) services.</li>
+            </ul>
+
+            <h3>2. Camera Permission &amp; On-Device Processing</h3>
+            <p>To enable durian leaf disease diagnosis, the application requires access to the device's camera (<code>android.permission.CAMERA</code>):</p>
+            <ul>
+                <li><strong>Purpose of Access:</strong> Used strictly to capture real-time viewfinder frames or leaf photographs for disease identification.</li>
+                <li><strong>Local On-Device AI Inference:</strong> All computer vision processing and neural network inference (via LiteRT / TensorFlow Lite) occur locally on your device's internal processor.</li>
+                <li><strong>Zero External Data Transmission:</strong> Neither camera frames, still photos, nor diagnosis results are ever uploaded to remote servers, cloud databases, or third parties.</li>
+                <li><strong>Local Storage:</strong> If you choose to save scan logs or disease statistics, these records remain stored strictly within the app's sandboxed local storage on your device and are never synchronized off-device.</li>
+            </ul>
+
+            <h3>3. Internet Connectivity</h3>
+            <p>
+                The application requests network access (<code>android.permission.INTERNET</code>) solely to allow users to open external web links in their system browser (e.g., official agricultural publications or academic institution links such as Burapha University and Mahidol Wittayanusorn School). The application does not transmit any user telemetry or analytics over the internet.
+            </p>
+
+            <h3>4. Data Security</h3>
+            <p>
+                Because no personal data or images are collected or transmitted across networks, your data remains secured within the sandbox boundaries enforced by the Android operating system.
+            </p>
+
+            <h3>5. Children's Privacy</h3>
+            <p>
+                Our application is not directed at children under the age of 13. We do not knowingly solicit or collect personal information from children.
+            </p>
+
+            <h3>6. Changes to This Privacy Policy</h3>
+            <p>
+                We may revise this Privacy Policy periodically to reflect technological updates or regulatory compliance requirements. Any revisions will become effective immediately upon publication on this page.
+            </p>
+
+            <h3>7. Contact Us</h3>
+            <p>If you have any questions, suggestions, or concerns regarding this Privacy Policy, please contact our development team at:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:plabooworld@outlook.com">plabooworld@outlook.com</a></li>
+                <li><strong>Open Source Repository:</strong> <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener">https://github.com/marsfinncode/cnn-durian</a></li>
+            </ul>
+        </article>
+
+    </div>
+
+    <footer>
+        &copy; 2026 YOEDO (You Only Eat Durian Once). All rights reserved.
+    </footer>
+
+</body>
+</html>
+

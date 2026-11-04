@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cameraRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000">
@@ -16,6 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <!-- Overlay sits exactly on top of preview, same size -->
     <com.cateatmars_dev.yoedodurian.OverlayView
         android:id="@+id/overlayView"
@@ -25,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="@id/previewView"
         app:layout_constraintStart_toStartOf="@id/previewView"
         app:layout_constraintEnd_toEndOf="@id/previewView"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/transparent" />
 
     <!-- Detection info bar at bottom -->
     <TextView
@@ -36,10 +38,10 @@
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:background="#88000000"
-        android:text="No diseases detected"
+        android:text="@string/no_diseases_detected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Back button at top left -->
     <com.google.android.material.button.MaterialButton
@@ -47,8 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Back"
+        android:text="@string/btn_back"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

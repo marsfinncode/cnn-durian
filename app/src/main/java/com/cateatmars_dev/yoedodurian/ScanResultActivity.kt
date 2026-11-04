@@ -2,16 +2,15 @@ package com.cateatmars_dev.yoedodurian
 
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.TextView
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
-import com.google.android.material.button.MaterialButton
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.File
@@ -19,7 +18,7 @@ import java.io.File
 class ScanResultActivity : BaseActivity() {
 
     private lateinit var pieChart: PieChart
-    private lateinit var toolbar: Toolbar
+    private lateinit var toolbar: MaterialToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +26,7 @@ class ScanResultActivity : BaseActivity() {
 
         pieChart = findViewById(R.id.pieChart)
         toolbar = findViewById(R.id.toolbar)
-        
+
         toolbar.setNavigationOnClickListener { finish() }
 
         val filePath = intent.getStringExtra("SCAN_FILE_PATH")
@@ -36,6 +35,8 @@ class ScanResultActivity : BaseActivity() {
         } else {
             loadCombinedChartData()
         }
+
+        UiAnimations.playStaggeredEntrance(findViewById<ViewGroup>(R.id.resultCardsContainer))
     }
 
     private fun loadChartData(filePath: String) {
@@ -45,10 +46,10 @@ class ScanResultActivity : BaseActivity() {
         val json = file.readText()
         val type = object : TypeToken<Map<String, Any>>() {}.type
         val wrapper: Map<String, Any> = Gson().fromJson(json, type)
-        
+
         val scanName = wrapper["name"] as? String ?: "Diseases"
         val countsRaw = wrapper["counts"] as? Map<*, *> ?: emptyMap<Any, Any>()
-        
+
         val scanResultsMap = mutableMapOf<String, Int>()
         for ((k, v) in countsRaw) {
             if (k is String && v is Number) {
@@ -58,7 +59,7 @@ class ScanResultActivity : BaseActivity() {
 
         val entries = ArrayList<PieEntry>()
         for ((label, count) in scanResultsMap) {
-            entries.add(PieEntry(count.toFloat(), label))
+            entries.add(PieEntry(count.toFloat(), ThemeUtils.getDisplayLabel(this, label)))
         }
 
         if (entries.isEmpty()) {
@@ -66,9 +67,8 @@ class ScanResultActivity : BaseActivity() {
             return
         }
 
-        val dataSet = PieDataSet(entries, "Diseases")
-        
-        // Setup colors
+        val dataSet = PieDataSet(entries, getString(R.string.chart_legend_diseases))
+
         val colors = ArrayList<Int>()
         for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
         for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
@@ -102,24 +102,35 @@ class ScanResultActivity : BaseActivity() {
         }
 
         val combinedMap = mutableMapOf<String, Int>()
-        val type = object : TypeToken<Map<String, Int>>() {}.type
+        val wrapperType = object : TypeToken<Map<String, Any>>() {}.type
         val gson = Gson()
 
         for (file in scansDir.listFiles()!!) {
             try {
                 val json = file.readText()
-                val map: Map<String, Int> = gson.fromJson(json, type)
-                for ((label, count) in map) {
-                    combinedMap[label] = combinedMap.getOrDefault(label, 0) + count
+                val parsed: Map<String, Any> = gson.fromJson(json, wrapperType)
+                val countsObj = parsed["counts"] as? Map<*, *>
+                if (countsObj != null) {
+                    for ((k, v) in countsObj) {
+                        if (k is String && v is Number) {
+                            combinedMap[k] = combinedMap.getOrDefault(k, 0) + v.toInt()
+                        }
+                    }
+                } else {
+                    for ((k, v) in parsed) {
+                        if (v is Number) {
+                            combinedMap[k] = combinedMap.getOrDefault(k, 0) + v.toInt()
+                        }
+                    }
                 }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 // Skip unreadable files
             }
         }
 
         val entries = ArrayList<PieEntry>()
         for ((label, count) in combinedMap) {
-            entries.add(PieEntry(count.toFloat(), label))
+            entries.add(PieEntry(count.toFloat(), ThemeUtils.getDisplayLabel(this, label)))
         }
 
         if (entries.isEmpty()) {
@@ -129,7 +140,7 @@ class ScanResultActivity : BaseActivity() {
             return
         }
 
-        val dataSet = PieDataSet(entries, "Diseases (Combined History)")
+        val dataSet = PieDataSet(entries, getString(R.string.chart_combined_title))
         val colors = ArrayList<Int>()
         for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
         for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
@@ -149,5 +160,4 @@ class ScanResultActivity : BaseActivity() {
         pieChart.animateY(1400)
         pieChart.invalidate()
     }
-
 }
